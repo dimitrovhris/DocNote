@@ -29,7 +29,7 @@ header{
     margin: 0 20px 0;
 }
 
-#site-navigation > ul > a{
+#site-navigation > ul > a, h2{
     font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
     margin: 20px;

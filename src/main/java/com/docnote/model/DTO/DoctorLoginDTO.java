@@ -1,7 +1,10 @@
 package com.docnote.model.DTO;
 
+import jakarta.validation.constraints.Size;
+
 public class DoctorLoginDTO {
 
+    @Size(min = 5)
     private String emailOrUsername;
     private String password;
 

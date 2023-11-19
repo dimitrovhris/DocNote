@@ -1,58 +1,38 @@
-package com.docnote.model.entity;
+package com.docnote.model.DTO;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.util.Set;
 
-@Entity
-@Table(name = "patients")
-public class Patient extends BaseEntity{
+public class PatientAddDTO {
 
-    @NotNull
-    @Column(name = "first_name")
+    @NotEmpty
     private String firstName;
 
-    @NotNull
+    @NotEmpty
     private String surname;
 
-    @NotNull
-    @Column(name = "last_name")
+    @NotEmpty
     private String lastName;
 
-    @NotNull
-    @Column(unique = true)
+    @NotEmpty
+    @Size(min = 10, max = 10)
     private String phone;
 
     @PastOrPresent
     @NotNull
     private LocalDate birthday;
 
-    @NotNull
     @Positive
+    @NotNull
     private int height;
 
-    @NotNull
     @Positive
+    @NotNull
     private int weight;
 
-    @NotNull
+    @NotEmpty
     private String address;
-
-    @ManyToOne
-    private Doctor doctor;
-
-    @OneToMany
-    private Set<Appointment> appointments;
-
-    @OneToMany
-    private Set<SicknessLeaveDocument> sicknessLeaveDocuments;
-
-    @OneToMany
-    private Set<Test> tests;
 
     public String getFirstName() {
         return firstName;
@@ -116,37 +96,5 @@ public class Patient extends BaseEntity{
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Set<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    public Set<SicknessLeaveDocument> getSicknessLeaveDocuments() {
-        return sicknessLeaveDocuments;
-    }
-
-    public void setSicknessLeaveDocuments(Set<SicknessLeaveDocument> sicknessLeaveDocuments) {
-        this.sicknessLeaveDocuments = sicknessLeaveDocuments;
-    }
-
-    public Set<Test> getTests() {
-        return tests;
-    }
-
-    public void setTests(Set<Test> tests) {
-        this.tests = tests;
     }
 }

@@ -1,9 +1,6 @@
 package com.docnote.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
@@ -42,7 +39,7 @@ public class Doctor extends BaseEntity{
     @NotNull
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor")
     private Set<Patient> patients;
 
     public String getFirstName() {

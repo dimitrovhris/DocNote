@@ -4,6 +4,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: 'FALSE'
+        enable_lazy_load_no_trans: 'TRUE'
     hibernate:
       ddl-auto: update
     open-in-view: 'false'

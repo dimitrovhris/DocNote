@@ -21,6 +21,7 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final DoctorRepository doctorRepository;
     private final CurrentUser currentUser;
+    boolean isLoginSuccessful = true;
 
     public DoctorController(DoctorService doctorService, DoctorRepository doctorRepository, CurrentUser currentUser) {
         this.doctorService = doctorService;
@@ -37,6 +38,7 @@ public class DoctorController {
         if (!model.containsAttribute("doctorService")) {
             model.addAttribute("doctorService", doctorService);
         }
+
         return "register";
     }
 
@@ -54,6 +56,9 @@ public class DoctorController {
             return "redirect:/user/register";
         }
         doctorService.register(doctorRegisterDTO);
+        currentUser.setLogged(true);
+        Doctor doctor = doctorRepository.findFirstByEmail(doctorRegisterDTO.getEmail()).get();
+        currentUser.setDoctor(doctor);
         return "redirect:/home";
     }
 
@@ -63,19 +68,34 @@ public class DoctorController {
             model.addAttribute("doctorLoginDTO", new DoctorLoginDTO());
         }
         if (!model.containsAttribute("doctorService")) {
+
             model.addAttribute("doctorService", doctorService);
+        }
+        if (!model.containsAttribute("isLoginSuccessful")) {
+            model.addAttribute("isLoginSuccessful", isLoginSuccessful);
         }
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(DoctorLoginDTO doctorLoginDTO) {
-        if (doctorService.validLogin(doctorLoginDTO)) {
+    public String login(@Valid DoctorLoginDTO doctorLoginDTO, BindingResult bindingResult, RedirectAttributes rAtt) {
+        isLoginSuccessful = doctorService.validLogin(doctorLoginDTO);
+        if (!bindingResult.hasErrors() && isLoginSuccessful) {
             currentUser.setLogged(true);
-            Doctor doctor = doctorRepository.findFirstByEmail(doctorLoginDTO.getEmailOrUsername()).get();
+            Doctor doctor = doctorRepository.findFirstByEmailOrUsername(doctorLoginDTO.getEmailOrUsername(), doctorLoginDTO.getEmailOrUsername()).get();
             currentUser.setDoctor(doctor);
             return "redirect:/home";
+        } else{
+            rAtt.addFlashAttribute("doctorLoginDTO", doctorLoginDTO);
+            rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorLoginDTO", bindingResult);
+            return "redirect:/user/login";
         }
-        return "redirect:/user/login";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        currentUser.setLogged(false);
+        return "index";
+    }
+
 }
