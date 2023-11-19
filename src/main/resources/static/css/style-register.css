@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+#main-register-div{
+    display: inline-block;
+    background-color: rgb(0, 255, 208);
+}
+#super-register-div{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 40px;
+    margin: 100px 50px 100px;
+}
+#main-register-div{
+    display: inline-block;
+    background-color: rgb(224, 233, 255);
+    border-radius: 15px;
+}
+#main-register-div > form{
+    padding: 40px 80px 20px;
+}
+#main-register-div > form > input, select{
+    border-radius: 7px;
+    height: 27.5px;
+    margin: 3px;
+    font-size: large;
+}
+#confirm-pass{
+    margin-bottom: 20px;
+}
+#register-button-form, #login-button-form{
+    color: white;
+    text-decoration: none;
+    background-color: rgb(59, 87, 200);;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 5px 15px 5px;
+    margin-top: 30px;
+}
+.register-img{
+    width: 25%;
+    height: 75%;
+    margin-right: 30px;
+}

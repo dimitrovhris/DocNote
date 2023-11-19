@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" th:href="@{/css/style-index.css}">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+          <link rel="stylesheet" th:href="@{/css/style-home.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+        <title>DocHero</title>
+    </head>
+</head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+        <section>
+            <h2>My patients:</h2>
+            <div id="patient-cards">
+            <div class="patient-card">
+                <h3>Patient Name</h3>
+                <h3>Birthday</h3>
+                <h3>Gender</h3>
+                <h3>Height:</h3>
+                <h3>Weight:</h3>
+            </div>
+            <div class="patient-card">
+                <h3>Patient Name</h3>
+                <h3>Birthday</h3>
+                <h3>Gender</h3>
+                <h3>Height:</h3>
+                <h3>Weight:</h3>
+            </div>
+            <div class="patient-card">
+                <h3>Patient Name</h3>
+                <h3>Birthday</h3>
+                <h3>Gender</h3>
+                <h3>Height:</h3>
+                <h3>Weight:</h3>
+            </div>
+            <div class="patient-card">
+                <h3>Patient Name</h3>
+                <h3>Birthday</h3>
+                <h3>Gender</h3>
+                <h3>Height:</h3>
+                <h3>Weight:</h3>
+            </div>
+            <div class="patient-card">
+                <h3>Patient Name</h3>
+                <h3>Birthday</h3>
+                <h3>Gender</h3>
+                <h3>Height:</h3>
+                <h3>Weight:</h3>
+            </div>
+        </div>
+        </section>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

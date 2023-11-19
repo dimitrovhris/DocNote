@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <link rel="stylesheet" href="style-index.css">
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+              <link rel="stylesheet" href="style-register.css">
+              <link rel="stylesheet" href="style-add-patient.css">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+            <title>DocHero</title>
+    </head>
+        
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+        <div id="super-register-div">
+
+
+            <div id="main-register-div">
+                <form>
+                    <h1>Add patient</h1>
+                    <div id="info">
+                    
+                    <div>
+                    
+                    <label for="name">Name:</label>
+                    <br>
+                    <input type = "text" id="name" placeholder="Enter name">
+                    <br>
+                    <label for="surname">Surname:</label>
+                    <br>
+                    <input type = "text" id="surname" placeholder="Enter surname">
+                    <br>
+                    <label for="last-name">Last name:</label>
+                    <br>
+                    <input type = "text" id="last-name" placeholder="Enter last name">
+                    <br>
+                    <label for="phone">Phone:</label>
+                    <br>
+                    <input type = "text" id="phone" placeholder="Enter your phone number">
+                    <br>
+                    
+                </div>
+                    <div>
+                        <label for="date">Birthday:</label>
+                    <br>
+                    <input type = "date" id="date">
+                    <br>
+                    <label for="height">Height:</label>
+                    <br>
+                    <input type = "number" id="height" placeholder="Enter height (cm)">
+                    <br>
+                    <label for="weight">Weight:</label>
+                    <br>
+                    <input type = "number" id="weight" placeholder="Enter weight (kg)">
+                    <br>
+                    <label for="address">Address:</label>
+                    <br>
+                    <input type="text" id="address" placeholder="Enter your address">
+                    <br>
+                    </div>
+                </div>
+                    <a id="register-button-form" href="">Register</a>
+                </form>
+            </div>
+            <img class="register-img" src="images/add-patient.png" alt="Doctor waving">
+        </div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

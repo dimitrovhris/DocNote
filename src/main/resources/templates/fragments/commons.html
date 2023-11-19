@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+</head>
+<body>
+<header>
+    <h1><a th:href="@{/}" id="site-heading">DocNote</a></h1>
+    <!--    <i id="doctor-icon" class="fas fa-user-md" style="color: #263754;"></i>-->
+    <!--    <i id="heart-icon" class="fas fa-heartbeat" style="color: #263754;"></i>-->
+    <!--    <i id="pill-icon" class="fas fa-tablets" style="color: #263754;"></i>-->
+    <!--    <i id="hospital-icon" class="fas fa-hospital" style="color: #263754;"></i>-->
+    <!--    <i id="stethoscope-icon" class="fas fa-stethoscope" style="color: #263754;"></i>-->
+    <nav id="site-navigation">
+
+        <ul>
+            <h2 th:if="${@currentUser.isLogged()}" th:text="'Dr.' + ${@currentUser.getDoctor().getLastName()}"></h2>
+            <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/login}">Login</a>
+            <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/register}">Register</a>
+        </ul>
+    </nav>
+</header>
+<footer>
+    <div id="col-1">
+        <h1>DocNote</h1>
+    </div>
+    <div id="col-3">
+        <h2>Follow us on:</h2>
+        <a><i class="fab fa-facebook-f"></i></a>
+        <a><i class="fab fa-instagram"></i></a>
+        <a><i class="fab fa-twitter"></i></a>
+    </div>
+    <div id="col-4">
+
+        <h2>
+            <i class="far fa-copyright" style="color: #000000;"></i>
+            2023 DocNote, All rights reserved.</h2>
+    </div>
+
+
+</footer>
+</body>
+</html>

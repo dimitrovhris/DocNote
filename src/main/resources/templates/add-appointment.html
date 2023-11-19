@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style-add-appointment.css}">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>DocHero</title>
+</head>
+<body>
+
+<header th:replace="~{fragments/commons::header}"></header>
+<div id="super-register-div">
+    <form id="main-register-div">
+        <div id="inner-divs">
+            <div id="first-div">
+
+                <h1>Appointment data:</h1>
+                <div class="inside-div">
+                    <label for="date-visit">Visit Date:</label>
+                    <input type="date" id="date-visit">
+
+                    <label for="time">Hour:</label>
+                    <input type="time" id="time">
+
+                    <label for="diagnosis">Diagnosis:</label>
+                    <input type="text" id="diagnosis">
+
+                    <label for="diagnosis-desc">Symptoms:</label>
+                    <textarea style="height: 70px;" id="diagnosis-desc"></textarea>
+
+                    <label for="treatment-type">Treatment type:</label>
+                    <select id="treatment-type">
+                        <option value="">Select</option>
+                        <option value="HOME">Home</option>
+                        <option value="HOSPITAL">Hospital</option>
+                    </select>
+
+                    <label for="medicine">Prescribed medicine:</label>
+                    <textarea style="height: 70px;" id="medicine"></textarea>
+
+                    <label id="label-check" for="checkbox">My patient is a worker</label>
+                    <input id="checkbox" type="checkbox">
+
+                </div>
+
+            </div>
+            <div id="second-div">
+
+
+                <h1>Write a sickness leave form:</h1>
+
+                <div class="inside-div">
+
+
+                    <label for="date-start">Sick leave start:</label>
+                    <input type="date" id="date-start">
+
+                    <label for="date-end">Sick leave end:</label>
+                    <input type="date" id="date-end">
+
+                    <label for="first-name">Employer name:</label>
+
+                    <input type="text" id="first-name" placeholder="Enter name">
+
+
+                    <label for="employer-surname">Employer last name:</label>
+
+                    <input type="text" id="employer-surname" placeholder="Enter surname">
+
+                    <label for="company-name">Company name:</label>
+
+                    <input type="text" id="company-name" placeholder="Enter employer's company name">
+
+                    <label for="reason">Reason for sickness leave:</label>
+                    <textarea style="height: 70px;" id="reason"></textarea>
+
+                </div>
+
+            </div>
+        </div>
+        <button type="submit">Add</button>
+    </form>
+    <!-- <img src="images\add-appointment.png" class="register-img" alt=""> -->
+
+</div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+<script src="app.js"></script>
+`
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+
+#patient-cards{
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    
+}
+.patient-card{
+    display: inline-block;
+    background-color: aliceblue;
+    border-radius: 30px;
+    padding: 20px;
+}

@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+body{
+    background-color: rgb(59, 164, 200);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#site-heading{
+    display: inline-block;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 1px;
+    margin-left: 25px;
+    text-decoration: none;
+    color: black;
+}
+#site-navigation{
+    display: inline-block;
+}
+header{
+    margin: 0;
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: 0 20px 0;
+}
+
+#site-navigation > ul > a{
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    margin: 20px;
+    font-size: 150%;
+    color: black;
+    font-weight: 700;
+    
+}
+#site-navigation > ul{
+    margin-top: 25px;
+
+}
+header > i{
+    opacity: 0.1;
+    font-size: 200%;
+    margin-top: 9px;
+    position:static;
+    font-size: 400%;
+}
+#doctor-icon{
+    left: 19%;
+}
+#heart-icon{
+    left: 34%;
+}
+#stethoscope-icon{
+    left: 49%;
+}
+#hospital-icon{
+    left: 64%;
+}
+
+#pill-icon{
+    left: 75%;
+}
+#main-div, main-div > *{
+    display: inline-block;
+}
+#main-div{
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgb(59, 164, 200);
+    padding: 5%;
+    left: 10%;
+    border-radius: 20px;
+    padding-top: 15%;
+    font-size: 22px;
+}
+
+#main-img{
+    width: 35%;
+    margin-top: 5%;
+    margin-left: 0%;
+    margin-right: 2%;
+}
+#super-div{
+
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 3vh;
+}
+#headers-div{
+    background-color: transparent;
+    padding: 3px 20px 15px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+#headers-div > h1, h2{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+header > ul{
+    padding-left: 400px;
+}
+footer > *{
+    display: inline-block;
+}
+footer > div > h1{
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 1px;
+}
+footer{
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding-top: 5vh;
+    margin-top: auto;
+    padding-bottom: 30px;
+}
+
+#col-3{
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+#col-4{
+    font-size: 10px;
+}
+#col-4 > h2{
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 50px;
+}
+.doctors-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px;
+    margin: 30px;
+}
+.main-field-div{
+    text-align: center;
+}
+.doc-label{
+    background-color: white;
+    border-radius: 30px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.doc-info-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px;
+    margin: 30px;
+    
+}
+.description-image{
+    width: 20em;
+    margin-top: 40px;
+    margin-left: 15%;
+}
+.description-paragraph{
+    display: inline-block;
+    font-size: 23px;
+    width: 40%;
+    margin-left: 1em;
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.5;
+    margin-top: 0;
+    text-align: left;
+    background-color: rgb(235, 184, 199);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+
+
+

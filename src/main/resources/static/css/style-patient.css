@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.main-info{
+    
+    display:grid;
+     grid-template-columns: 3fr 3fr 3fr;
+     grid-gap: 30px;
+}
+.appointments-section{
+    text-align: center;
+}

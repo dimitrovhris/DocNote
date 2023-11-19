@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="stylesheet" th:href="@{/css/style-register.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>DocHero</title>
+</head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+<div id="super-register-div">
+
+
+    <div th:object="${doctorService}" id="main-register-div">
+        <form th:object="${doctorRegisterDTO}" th:action="@{/user/register}" th:method="POST">
+            <h1>Register</h1>
+
+            <br>
+            <label for="name">Name:</label>
+            <input th:name="firstName" th:field="*{firstName}" type = "text" id="name" placeholder="Enter your name">
+            <br>
+            <small th:if="${#fields.hasErrors('firstName')}">Name should be at least 2 symbols long</small>
+            <br>
+            <label for="surname">Surname:</label>
+            <input th:name="surname" th:field="*{surname}" type = "text" id="surname" placeholder="Enter your surname">
+            <br>
+            <small th:if="${#fields.hasErrors('surname')}">Surname should be at least 2 symbols long</small>
+            <br>
+            <label for="last-name">Last name:</label>
+            <input th:name="lastName" th:field="*{lastName}" type = "text" id="last-name" placeholder="Enter your last name">
+            <br>
+            <small th:if="${#fields.hasErrors('lastName')}">Last name should be at least 2 symbols long</small>
+            <br>
+            <label for="username">Username:</label>
+            <br>
+            <input th:name="username" th:field="*{username}" type="text" id="username">
+            <br>
+            <small th:if="${#fields.hasErrors('username') || doctorService.containsUsername(doctorRegisterDTO)}">Username should be at least 5 symbols and unique</small>
+            <br>
+            <label for="phone">Phone:</label>
+            <br>
+            <input type = "text" th:name="phone" th:field="*{phone}" id="phone" placeholder="Enter your phone number">
+            <br>
+            <small th:if="${#fields.hasErrors('phone') || doctorService.containsPhone(doctorRegisterDTO)}">Phone should be 10 digits long and unique</small>
+            <br>
+            <label for="email" >Email:</label>
+            <br>
+            <input type="email" th:name="email" th:field="*{email}" id="email" placeholder="Enter email">
+            <br>
+            <small th:if="${#fields.hasErrors('email') || doctorService.containsEmail(doctorRegisterDTO)}">Email must be unique</small>
+            <br>
+            <label for="address">Address:</label>
+            <br>
+            <input type="text" th:name="address" th:field="*{address}" id="address" placeholder="Enter your address">
+            <br>
+            <small th:if="${#fields.hasErrors('address')}">Enter a valid address</small>
+            <br>
+            <label for="password">Password:</label>
+            <br>
+            <input type="password" th:name="password" th:field="*{password}" id="password" placeholder="Enter password">
+            <br>
+            <small th:if="${#fields.hasErrors('password')}">Password should be at least 6 symbols long</small>
+            <br>
+            <label for="confirm-pass">Confirm password:</label>
+
+            <br>
+            <input type="password" th:name="confirmPassword" th:field="*{confirmPassword}" id="confirm-pass" placeholder="Enter your password again">
+            <br>
+            <small th:if="${!doctorService.confirmPassword(doctorRegisterDTO) || #fields.hasErrors('confirmPassword')}">Passwords does not match</small>
+            <br>
+
+            <button type="submit" id="register-button-form">Register</button>
+        </form>
+    </div>
+    <img class="register-img" th:src="@{/images/register-img.png}" alt="Doctor waving">
+</div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

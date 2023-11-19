@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" th:href="@{/css/style-index.css}">
+          <link rel="stylesheet" th:href="@{/css/style-register.css}">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+        <title>DocHero</title>
+    </head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+        <div id="super-register-div">
+            <img th:src="@{/images/login-img.png}" class="register-img" alt="">
+        <div id="main-register-div">
+           
+            <form th:method="POST" th:action="@{/user/login}" th:object="${doctorLoginDTO}">
+                <h1>Login</h1>
+                <label for="email">Email:</label>
+                <br>
+                <input th:name="emailOrUsername" th:field="*{emailOrUsername}" type="email" id="email" placeholder="Enter email">
+                <br>
+                <label for="password">Password:</label>
+                <br>
+                <input th:name="password" th:field="*{password}" type="password" id="password" placeholder="Enter password">
+                <br>
+                <button type="submit" id="login-button-form">Login</button>
+            </form>
+        </div>
+       
+    </div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+
+#super-register-div{
+    
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 40px;
+    margin: 100px 50px 100px;
+}
+#inner-divs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(224, 233, 255);
+    border-radius: 15px;
+}
+#second-div{
+    display: none;
+    background-color: white;
+    border: 1px dotted black;
+    padding: 10px;
+}
+#main-register-div > form{
+    padding: 40px 80px 20px;
+}
+#main-register-div > form > input, select{
+    border-radius: 7px;
+    height: 27.5px;
+    margin: 3px;
+    font-size: large;
+}
+.register-img{
+    width: 65%;
+    height: 85%;
+    margin-left: 70px;
+    border-radius: 15px;
+}
+form > *{
+    font-size: 30px;
+    display: block;
+}
+form h1{
+    font-size: 30px;
+}
+.inside-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+.inside-div > *{
+    margin: 8px;
+}
+#first-div, #second-div{
+    margin: 20px;
+}
+#label-check, #checkbox{
+    font-size: 20px;
+}

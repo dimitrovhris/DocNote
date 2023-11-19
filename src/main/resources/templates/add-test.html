@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="style-index.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+          
+          <link rel="stylesheet" href="style-register.css">
+          <link rel="stylesheet" href="style-add-test.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+        <title>DocHero</title>
+    </head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+        <div id="super-register-div">
+
+
+            <div id="main-register-div">
+                <form>
+                    <h1>Order test</h1>
+                    
+                    <label for="type">Test type:</label>
+                    <br>
+                            <select id="type">
+                                <option value="">Select</option>
+                                <option value="BLOOD">Blood test</option>
+                                <option value="URINE">Urine test</option>
+                                <option value="INFECTION">Infection test</option>
+                                <option value="ALLERGY">Allergy test</option>
+                                <option value = "TUMOR">Tumor marker</option>
+                                <option value="STOOL">Stool test</option>
+                                <option value="OTHER">Other test</option>
+                            </select>
+                    <br>
+                    <label for="test">Test name:</label>
+                    <br>
+                    <input type="text" id="test" placeholder="Enter test name">
+                    <br>
+                    <label for="diagnosis-desc">Description</label>
+                    <br>
+                    <textarea style="height: 40px; width: 200px;" id="diagnosis-desc"></textarea>
+                    <br>
+                    <label for="start-date">Order date:</label>
+                    <br>
+                    <input type="date" id="start-date" placeholder="Enter end date">
+                    <br>
+                    
+                    <label for="end-date">Valid until:</label>
+                    <br>
+                    <input type="date" id="end-date" placeholder="Enter end date">
+                    <br>
+                    
+                    <button type="submit" id="register-button-form" href="">ORDER</button>
+                </form>
+            </div>
+            <img class="register-img" src="images/test.png" alt="Doctor waving">
+        </div>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>
