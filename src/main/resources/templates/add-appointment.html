@@ -18,81 +18,54 @@
 
 <header th:replace="~{fragments/commons::header}"></header>
 <div id="super-register-div">
-    <form id="main-register-div">
+    <div id="main-register-div">
         <div id="inner-divs">
-            <div id="first-div">
+            <form id="first-div" th:object="${appointmentAddDTO}" th:method="POST" th:action="@{/appointment/add}">
 
                 <h1>Appointment data:</h1>
                 <div class="inside-div">
                     <label for="date-visit">Visit Date:</label>
-                    <input type="date" id="date-visit">
+                    <input th:name="visitDate" th:field="*{visitDate}" type="date" id="date-visit">
 
                     <label for="time">Hour:</label>
-                    <input type="time" id="time">
+                    <input th:name="hour" th:field="*{hour}" type="time" id="time">
 
                     <label for="diagnosis">Diagnosis:</label>
-                    <input type="text" id="diagnosis">
+                    <input th:name="diagnosis" th:field="*{diagnosis}" type="text" id="diagnosis">
 
                     <label for="diagnosis-desc">Symptoms:</label>
-                    <textarea style="height: 70px;" id="diagnosis-desc"></textarea>
+                    <textarea th:name="symptoms" th:field="*{symptoms}" style="height: 70px;" id="diagnosis-desc"></textarea>
 
                     <label for="treatment-type">Treatment type:</label>
-                    <select id="treatment-type">
+                    <select th:name="treatmentType" th:field="*{treatmentType}" id="treatment-type">
                         <option value="">Select</option>
                         <option value="HOME">Home</option>
                         <option value="HOSPITAL">Hospital</option>
                     </select>
 
                     <label for="medicine">Prescribed medicine:</label>
-                    <textarea style="height: 70px;" id="medicine"></textarea>
+                    <textarea th:name="prescription" th:field="*{prescription}" style="height: 70px;" id="medicine"></textarea>
 
                     <label id="label-check" for="checkbox">My patient is a worker</label>
-                    <input id="checkbox" type="checkbox">
+                    <input th:name="sicknessLeaveDocument" th:field="*{sicknessLeaveDocument}" id="checkbox" type="checkbox">
 
                 </div>
 
-            </div>
-            <div id="second-div">
 
 
-                <h1>Write a sickness leave form:</h1>
+                <button type="submit">Add</button>
+            </form>
+            <img th:src="@{/images/appointment-img.png}" alt="">
 
-                <div class="inside-div">
-
-
-                    <label for="date-start">Sick leave start:</label>
-                    <input type="date" id="date-start">
-
-                    <label for="date-end">Sick leave end:</label>
-                    <input type="date" id="date-end">
-
-                    <label for="first-name">Employer name:</label>
-
-                    <input type="text" id="first-name" placeholder="Enter name">
-
-
-                    <label for="employer-surname">Employer last name:</label>
-
-                    <input type="text" id="employer-surname" placeholder="Enter surname">
-
-                    <label for="company-name">Company name:</label>
-
-                    <input type="text" id="company-name" placeholder="Enter employer's company name">
-
-                    <label for="reason">Reason for sickness leave:</label>
-                    <textarea style="height: 70px;" id="reason"></textarea>
-
-                </div>
-
-            </div>
         </div>
-        <button type="submit">Add</button>
-    </form>
+
+
+    </div>
     <!-- <img src="images\add-appointment.png" class="register-img" alt=""> -->
 
 </div>
 <footer th:replace="~{fragments/commons::footer}"></footer>
-<script src="app.js"></script>
+
 `
 
 </body>

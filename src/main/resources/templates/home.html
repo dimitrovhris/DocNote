@@ -16,16 +16,16 @@
 </head>
 <body>
 <header th:replace="~{fragments/commons::header}"></header>
-        <section th:object="${@currentUser}">
+        <section>
             <a th:href="@{/patient/add}">Add patient</a>
             <h2>My patients:</h2>
             <div id="patient-cards">
-            <div th:each="patient: ${@currentUser.getDoctor().getPatients()}" class="patient-card">
+            <div th:each="patient: ${patients}" th:object="${patient}" class="patient-card">
                 <h3 th:text="${patient.firstName}"></h3>
                 <h3 th:text="${patient.surname}"></h3>
                 <h3 th:text="${patient.lastName}"></h3>
-
-                <h3>Weight:</h3>
+                <a th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
+                <a th:href="@{/test/add}">Order test</a>
             </div>
         </div>
         </section>

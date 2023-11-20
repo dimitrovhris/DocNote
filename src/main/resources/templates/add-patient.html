@@ -32,40 +32,54 @@
                     <br>
                     <input th:name="firstName" th:field="*{firstName}" type = "text" id="name" placeholder="Enter patient's name">
                     <br>
+                    <small th:if="${#fields.hasErrors('firstName')}">Enter a valid name</small>
+                        <br>
                     <label for="surname">Surname:</label>
                     <br>
                     <input th:name="surname" th:field="*{surname}" type = "text" id="surname" placeholder="Enter patient's surname">
-                    <br>
+                        <small th:if="${#fields.hasErrors('surname')}">Enter a valid name</small>
+                        <br>
                     <label  for="last-name">Last name:</label>
                     <br>
                     <input th:name="lastName" th:field="*{lastName}" type = "text" id="last-name" placeholder="Enter patient's last name">
-                    <br>
+                        <small th:if="${#fields.hasErrors('lastName')}">Enter a valid name</small>
+                        <br>
                     <label for="phone">Phone:</label>
                     <br>
                     <input  th:name="phone" th:field="*{phone}" type = "text" id="phone" placeholder="Enter patient's phone number">
-                    <br>
+                        <br>
+                        <small th:if="${#fields.hasErrors('phone')}">Enter a valid phone</small>
+                        <br>
                     
                 </div>
                     <div>
                         <label for="date">Birthday:</label>
                     <br>
                     <input th:name="birthday" th:field="*{birthday}" type = "date" id="date">
+                        <small th:if="${#fields.hasErrors('birthday')}">Enter a valid birthdate</small>
                     <br>
                     <label for="height">Height:</label>
                     <br>
                     <input th:name="height" th:field="*{height}" type = "number" id="height" placeholder="Enter height (cm)">
+                        <br>
+                        <small th:if="${#fields.hasErrors('height')}">Enter a valid height</small>
+
                     <br>
                     <label for="weight">Weight:</label>
                     <br>
                     <input th:name="weight" th:field="*{weight}" type = "number" id="weight" placeholder="Enter weight (kg)">
-                    <br>
+                        <br>
+                        <small th:if="${#fields.hasErrors('weight')}">Enter a valid height</small>
+                        <br>
                     <label for="address">Address:</label>
                     <br>
                     <input th:name="address" th:field="*{address}" type="text" id="address" placeholder="Enter your address">
-                    <br>
+                        <small th:if="${#fields.hasErrors('address')}">Please enter an address</small>
+                        <br>
+
                     </div>
                 </div>
-                    <button type="submit" id="register-button-form" href="">Add patient to my list</button>
+                    <button type="submit" id="register-button-form">Add patient to my list</button>
                 </form>
             </div>
             <img class="register-img" th:src="@{/images/add-patient.png}" alt="Doctor waving">

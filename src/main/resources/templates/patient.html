@@ -6,10 +6,10 @@
     
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="style-index.css">
+          <link rel="stylesheet" th:href="@{/css/style-index.css}">
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-          <link rel="stylesheet" href="style-patient.css">
+          <link rel="stylesheet" th:href="@{/css/style-patient.css}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
         <title>DocHero</title>
@@ -17,23 +17,32 @@
 </head>
 <body>
 <header th:replace="~{fragments/commons::header}"></header>
-        <section>
+        <main th:object="${patientId}">
+
             <div class="main-info">
-            <h2>Name name</h2>
-            <h2>Birthday</h2>
-            <h2>Gender: </h2>
+                <h2>Main info:</h2>
+            <h2 th:text="${patient.firstName}"></h2>
+                <h2 th:text="${patient.surname}"></h2>
+                <h2 th:text="${patient.lastName}"></h2>
         </div>
         <div class="appointments-section">
             <h2>Appointments:</h2>
+
             <div class="appointments">
-                <div class="appointment">
-                    <h2>Date:</h2>
-                    <h2>Time:</h2>
-                    <h2>Recepie:</h2>
+                <div th:each="appointment: ${patient.appointments}" class="appointment">
+                    <h3 th:text="'Date: ' + ${appointment.visitDate}"></h3>
+                    <h3 th:text="'Time: ' + ${appointment.hour}"></h3>
+                    <h3 th:text="'Diagnosis: ' + ${appointment.diagnosis}"></h3>
+                    <a>See full info</a>
                 </div>
             </div>
         </div>
-        </section>
+            <div class="main-info">
+                <div>
+                <h2>Ordered tests</h2>
+                </div>
+            </div>
+        </main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>
 </html>
