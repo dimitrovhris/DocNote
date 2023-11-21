@@ -20,9 +20,9 @@
            
             <form th:method="POST" th:action="@{/user/login}" th:object="${doctorLoginDTO}">
                 <h1>Login</h1>
-                <label for="email">Email:</label>
+                <label for="email">Email or username:</label>
                 <br>
-                <input th:name="emailOrUsername" th:field="*{emailOrUsername}" type="text" id="email" placeholder="Enter email">
+                <input th:name="emailOrUsername" th:field="*{emailOrUsername}" type="text" id="email" placeholder="Enter email or username">
                 <br>
                 <label for="password">Password:</label>
                 <br>

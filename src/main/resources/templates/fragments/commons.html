@@ -16,7 +16,7 @@
     <nav id="site-navigation">
 
         <ul>
-            <h2 th:if="${@currentUser.isLogged()}" th:text="'Dr.' + ${@currentUser.getDoctor().getLastName()}"></h2>
+            <h2 th:if="${@currentUser.isLogged()}" th:text="'Dr. ' + ${@currentUser.getDoctor().getLastName()}"></h2>
             <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/login}">Login</a>
             <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/register}">Register</a>
             <a th:if="${@currentUser.isLogged()}" th:href="@{/user/logout}">Logout</a>
