@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jdk.jfr.BooleanFlag;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,10 +29,11 @@ public class AppointmentAddDTO {
     @Enumerated
     private TreatmentType treatmentType;
 
+    @NotEmpty
     private String prescription;
 
-
-    private boolean sicknessLeaveDocument;
+    @BooleanFlag
+    private boolean isPatientWorker;
 
     public LocalDate getVisitDate() {
         return visitDate;
@@ -81,11 +83,11 @@ public class AppointmentAddDTO {
         this.prescription = prescription;
     }
 
-    public boolean isSicknessLeaveDocument() {
-        return sicknessLeaveDocument;
+    public boolean isPatientWorker() {
+        return isPatientWorker;
     }
 
-    public void setSicknessLeaveDocument(boolean sicknessLeaveDocument) {
-        this.sicknessLeaveDocument = sicknessLeaveDocument;
+    public void setPatientWorker(boolean patientWorker) {
+        isPatientWorker = patientWorker;
     }
 }

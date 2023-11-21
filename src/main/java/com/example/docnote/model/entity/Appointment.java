@@ -4,6 +4,7 @@ import com.example.docnote.model.enums.TreatmentType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jdk.jfr.BooleanFlag;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,8 +38,11 @@ public class Appointment extends BaseEntity {
     @Column(name = "work_sickness_document")
     private boolean workSicknessDocument;
 
-    @OneToOne
+    @ManyToOne
     private Patient patient;
+
+    @BooleanFlag
+    private boolean isPatientWorker;
 
     @OneToOne
     private SicknessLeaveDocument sicknessLeaveDocument;
@@ -83,12 +87,12 @@ public class Appointment extends BaseEntity {
         this.treatmentType = treatmentType;
     }
 
-    public String getPrescribedMedicine() {
+    public String getPrescription() {
         return prescription;
     }
 
-    public void setPrescribedMedicine(String prescribedMedicine) {
-        this.prescription = prescribedMedicine;
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
     }
 
     public Patient getPatient() {

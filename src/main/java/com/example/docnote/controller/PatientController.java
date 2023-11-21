@@ -48,8 +48,8 @@ public class PatientController {
     }
     @GetMapping("/{id}")
     public String showProfile(@PathVariable Long id, Model model){
-        Patient patient = patientRepository.findById(id).get();
-        model.addAttribute("patient", patient);
+        Patient patientProfile = patientRepository.findById(id).get();
+        model.addAttribute("patientProfile", patientProfile);
         return "patient";
     }
 

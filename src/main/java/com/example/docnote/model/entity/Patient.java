@@ -6,6 +6,7 @@ import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,14 +45,14 @@ public class Patient extends BaseEntity{
     @ManyToOne
     private Doctor doctor;
 
-    @OneToMany
-    private Set<Appointment> appointments;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
     @OneToMany
-    private Set<SicknessLeaveDocument> sicknessLeaveDocuments;
+    private List<SicknessLeaveDocument> sicknessLeaveDocuments;
 
     @OneToMany
-    private Set<Test> tests;
+    private List<Test> tests;
 
     public String getFirstName() {
         return firstName;
@@ -125,27 +126,27 @@ public class Patient extends BaseEntity{
         this.doctor = doctor;
     }
 
-    public Set<Appointment> getAppointments() {
+    public List<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(Set<Appointment> appointments) {
+    public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
-    public Set<SicknessLeaveDocument> getSicknessLeaveDocuments() {
+    public List<SicknessLeaveDocument> getSicknessLeaveDocuments() {
         return sicknessLeaveDocuments;
     }
 
-    public void setSicknessLeaveDocuments(Set<SicknessLeaveDocument> sicknessLeaveDocuments) {
+    public void setSicknessLeaveDocuments(List<SicknessLeaveDocument> sicknessLeaveDocuments) {
         this.sicknessLeaveDocuments = sicknessLeaveDocuments;
     }
 
-    public Set<Test> getTests() {
+    public List<Test> getTests() {
         return tests;
     }
 
-    public void setTests(Set<Test> tests) {
+    public void setTests(List<Test> tests) {
         this.tests = tests;
     }
 }
