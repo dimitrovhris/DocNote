@@ -35,14 +35,13 @@ public class Appointment extends BaseEntity {
     @Column(name = "prescription")
     private String prescription;
 
-    @Column(name = "work_sickness_document")
-    private boolean workSicknessDocument;
 
     @ManyToOne
     private Patient patient;
 
     @BooleanFlag
-    private boolean isPatientWorker;
+    @Column(name= "is_patient_worker")
+    private boolean worker;
 
     @OneToOne
     private SicknessLeaveDocument sicknessLeaveDocument;
@@ -105,6 +104,14 @@ public class Appointment extends BaseEntity {
 
     public SicknessLeaveDocument getSicknessLeaveDocument() {
         return sicknessLeaveDocument;
+    }
+
+    public boolean isWorker() {
+        return worker;
+    }
+
+    public void setWorker(boolean worker) {
+        this.worker = worker;
     }
 
     public void setSicknessLeaveDocument(SicknessLeaveDocument sicknessLeaveDocument) {

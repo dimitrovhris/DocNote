@@ -33,7 +33,7 @@
                     <h3 th:text="'Date: ' + ${appointment.visitDate}"></h3>
                     <h3 th:text="'Time: ' + ${appointment.hour}"></h3>
                     <h3 th:text="'Diagnosis: ' + ${appointment.diagnosis}"></h3>
-                    <a>See full info</a>
+                    <a th:href="@{/appointment/{id}(id = ${appointment.id})}">See more info</a>
                 </div>
             </div>
         </div>

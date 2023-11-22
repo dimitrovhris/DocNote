@@ -6,23 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/style-index.css}">
 </head>
 <body>
-<header>
-    <h1><a th:href="@{/}" id="site-heading">DocNote</a></h1>
-    <!--    <i id="doctor-icon" class="fas fa-user-md" style="color: #263754;"></i>-->
-    <!--    <i id="heart-icon" class="fas fa-heartbeat" style="color: #263754;"></i>-->
-    <!--    <i id="pill-icon" class="fas fa-tablets" style="color: #263754;"></i>-->
-    <!--    <i id="hospital-icon" class="fas fa-hospital" style="color: #263754;"></i>-->
-    <!--    <i id="stethoscope-icon" class="fas fa-stethoscope" style="color: #263754;"></i>-->
-    <nav id="site-navigation">
-
-        <ul>
-            <h2 th:if="${@currentUser.isLogged()}" th:text="'Dr. ' + ${@currentUser.getDoctor().getLastName()}"></h2>
-            <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/login}">Login</a>
-            <a th:unless="${@currentUser.isLogged()}" th:href="@{/user/register}">Register</a>
-            <a th:if="${@currentUser.isLogged()}" th:href="@{/user/logout}">Logout</a>
-        </ul>
-    </nav>
-</header>
+<header th:replace="~{fragments/commons::header}"></header>
 <footer>
     <div id="col-1">
         <h1>DocNote</h1>

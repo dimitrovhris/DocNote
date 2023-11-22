@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style-add-document.css}">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <title>DocHero</title>
+</head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+
+<main>
+    <div>
+        <form action="">
+            <h1>Add sickness leave document</h1>
+            <label for="date-start">Start date:</label>
+            <input type="date" id="date-start">
+            <label for="date-end">End date:</label>
+            <input type="date" id="date-end">
+            <label for="first-name">First name:</label>
+            <input type="text" id="first-name">
+            <label for="first-name">First name:</label>
+            <label for="last-name"></label>
+            <input type="text" id="last-name">
+            <label for="reason">Reason:</label>
+            <input type="text" id="reason">
+        </form>
+    </div>
+    <img th:src="@{/images/add-document.png}" alt="">
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+
+</body>
+</html>

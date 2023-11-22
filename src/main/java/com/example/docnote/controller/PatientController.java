@@ -43,7 +43,6 @@ public class PatientController {
             return "redirect:/patient/add";
         }
         patientService.addPatient(patientAddDTO);
-
         return "redirect:/home";
     }
     @GetMapping("/{id}")

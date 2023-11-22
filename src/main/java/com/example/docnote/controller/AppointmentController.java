@@ -1,7 +1,9 @@
 package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.AppointmentAddDTO;
+import com.example.docnote.model.entity.Appointment;
 import com.example.docnote.model.entity.Patient;
+import com.example.docnote.repository.AppointmentRepository;
 import com.example.docnote.repository.PatientRepository;
 import com.example.docnote.service.AppointmentService;
 import jakarta.validation.Valid;
@@ -19,10 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AppointmentController {
     private final AppointmentService appointmentService;
     private final PatientRepository patientRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public AppointmentController(AppointmentService appointmentService, PatientRepository patientRepository) {
+    public AppointmentController(AppointmentService appointmentService, PatientRepository patientRepository, AppointmentRepository appointmentRepository) {
         this.appointmentService = appointmentService;
         this.patientRepository = patientRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     @GetMapping("/add/{id}")
@@ -46,7 +50,16 @@ public class AppointmentController {
         appointmentService.add(appointmentAddDTO, id);
         Patient patientProfile = patientRepository.findById(id).get();
         model.addAttribute("patient", patientProfile);
+        if(appointmentAddDTO.isWorker()){
+            return "redirect:/document/add/{id}";
+        }
         return "redirect:/patient/{id}";
+    }
+    @GetMapping("/{id}")
+    public String show(Model model, @PathVariable Long id){
+        Appointment appointment = appointmentRepository.findById(id).get();
+        model.addAttribute("appointment", appointment);
+        return "appointment-info";
     }
 
 }

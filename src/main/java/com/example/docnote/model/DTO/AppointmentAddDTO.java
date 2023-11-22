@@ -33,7 +33,7 @@ public class AppointmentAddDTO {
     private String prescription;
 
     @BooleanFlag
-    private boolean isPatientWorker;
+    private boolean worker;
 
     public LocalDate getVisitDate() {
         return visitDate;
@@ -83,11 +83,11 @@ public class AppointmentAddDTO {
         this.prescription = prescription;
     }
 
-    public boolean isPatientWorker() {
-        return isPatientWorker;
+    public boolean isWorker() {
+        return worker;
     }
 
-    public void setPatientWorker(boolean patientWorker) {
-        isPatientWorker = patientWorker;
+    public void setWorker(boolean worker) {
+        this.worker = worker;
     }
 }
