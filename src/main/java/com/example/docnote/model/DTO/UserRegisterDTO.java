@@ -3,10 +3,9 @@ package com.example.docnote.model.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class DoctorRegisterDTO {
+public class UserRegisterDTO {
 
     @Size(min = 2)
     @NotEmpty

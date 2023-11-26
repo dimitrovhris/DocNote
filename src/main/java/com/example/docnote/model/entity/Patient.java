@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "patients")
@@ -43,7 +42,7 @@ public class Patient extends BaseEntity{
     private String address;
 
     @ManyToOne
-    private Doctor doctor;
+    private UserEntity doctor;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Appointment> appointments;
@@ -118,11 +117,11 @@ public class Patient extends BaseEntity{
         this.address = address;
     }
 
-    public Doctor getDoctor() {
+    public UserEntity getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(UserEntity doctor) {
         this.doctor = doctor;
     }
 

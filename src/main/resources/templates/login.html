@@ -13,22 +13,22 @@
         <title>DocHero</title>
     </head>
 <body>
-<header th:object="${doctorService}" th:replace="~{fragments/commons::header}"></header>
-        <div id="super-register-div" th:object="${isLoginSuccessful}">
+<header  th:replace="~{fragments/commons::header}"></header>
+        <div id="super-register-div" >
             <img th:src="@{/images/login-img.png}" class="register-img" alt="">
         <div id="main-register-div">
            
-            <form th:method="POST" th:action="@{/user/login}" th:object="${doctorLoginDTO}">
+            <form th:method="POST" th:action="@{/user/login}">
                 <h1>Login</h1>
                 <label for="email">Email or username:</label>
                 <br>
-                <input th:name="emailOrUsername" th:field="*{emailOrUsername}" type="text" id="email" placeholder="Enter email or username">
+                <input th:name="emailOrUsername"  type="text" id="email" placeholder="Enter email or username">
                 <br>
                 <label for="password">Password:</label>
                 <br>
-                <input th:name="password" th:field="*{password}" type="password" id="password" placeholder="Enter password">
+                <input th:name="password"  type="password" id="password" placeholder="Enter password">
                 <br>
-                <small th:unless="${isLoginSuccessful}">Invalid email or password</small>
+                <small >Invalid email or password</small>
                 <br>
                 <button type="submit" id="login-button-form">Login</button>
             </form>

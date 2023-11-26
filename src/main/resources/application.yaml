@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     properties:
       hibernate:
@@ -20,6 +22,8 @@ spring:
 logging:
   level:
     org:
+      springframework:
+        security: INFO
       hibernate:
         type:
           descriptor: TRACE

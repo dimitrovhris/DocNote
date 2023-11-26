@@ -25,8 +25,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model){
-        List<Patient> patients = currentUser.getDoctor().getPatients();
-        model.addAttribute("patients", patients);
+
         return "home";
     }
 

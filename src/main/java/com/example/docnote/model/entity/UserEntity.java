@@ -7,9 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "doctors")
-public class Doctor extends BaseEntity{
-
+@Table(name = "users")
+public class UserEntity extends BaseEntity{
     @NotNull
     @Column(name = "first_name")
     private String firstName;
@@ -39,8 +38,8 @@ public class Doctor extends BaseEntity{
     @NotNull
     private String password;
 
-    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
-    private List<Patient> patients;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<UserRole> roles;
 
     public String getFirstName() {
         return firstName;
@@ -106,11 +105,23 @@ public class Doctor extends BaseEntity{
         this.password = password;
     }
 
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
+    private List<Patient> patients;
+
+
     public List<Patient> getPatients() {
         return patients;
     }
 
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
+    }
+
+    public List<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRole> roles) {
+        this.roles = roles;
     }
 }

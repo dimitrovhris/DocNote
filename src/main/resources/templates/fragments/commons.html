@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/style-index.css}">
 </head>
 <body>
-<header th:replace="~{fragments/commons::header}"></header>
+<header>
+    <h1><a th:href="@{/}" id="site-heading">DocNote</a></h1>
+    <!--    <i id="doctor-icon" class="fas fa-user-md" style="color: #263754;"></i>-->
+    <!--    <i id="heart-icon" class="fas fa-heartbeat" style="color: #263754;"></i>-->
+    <!--    <i id="pill-icon" class="fas fa-tablets" style="color: #263754;"></i>-->
+    <!--    <i id="hospital-icon" class="fas fa-hospital" style="color: #263754;"></i>-->
+    <!--    <i id="stethoscope-icon" class="fas fa-stethoscope" style="color: #263754;"></i>-->
+    <nav id="site-navigation">
+
+        <ul>
+            <h2 sec:authorize="isAuthenticated()">
+                Dr. <span sec:authentication="name"></span>
+            </h2>
+
+            <a sec:authorize="!isAuthenticated()" th:href="@{user/login}">Login</a>
+
+            <a sec:authorize="!isAuthenticated()" th:href="@{user/register}">Register</a>
+
+
+            <form th:method="POST" th:action="@{/user/logout}">
+            <input sec:authorize="isAuthenticated()" type="submit" value="Logout">
+            </form>
+        </ul>
+    </nav>
+</header>
 <footer>
     <div id="col-1">
         <h1>DocNote</h1>
