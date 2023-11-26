@@ -1,11 +1,8 @@
 package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.UserRegisterDTO;
-
 import com.example.docnote.model.entity.UserEntity;
-
 import com.example.docnote.repository.UserRepository;
-
 import com.example.docnote.service.UserService;
 import com.example.docnote.util.CurrentUser;
 import jakarta.validation.Valid;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
-    boolean isLoginSuccessful = true;
 
     public UserController(UserService userService, UserRepository userRepository, CurrentUser currentUser) {
         this.userService = userService;
@@ -56,13 +53,25 @@ public class UserController {
             return "redirect:/user/register";
         }
         userService.register(userRegisterDTO);
-        UserEntity user = userRepository.findFirstByEmail(userRegisterDTO.getEmail()).get();
         return "redirect:/home";
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String loginPage() {
         return "login";
+    }
+
+    @GetMapping("/login-error")
+    public String login(Model model){
+        model.addAttribute("invalidLogin", true);
+        return "login";
+    }
+    @PostMapping("/approve/{id}")
+    public String approve(@PathVariable Long id){
+        UserEntity user = userRepository.findById(id).get();
+        user.setApproved(true);
+        userRepository.save(user);
+        return "redirect:/home";
     }
 
 }

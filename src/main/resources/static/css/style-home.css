@@ -1,10 +1,9 @@
 
-#patient-cards{
+.patient-cards{
     display: grid;
     grid-template-columns: 3fr 3fr 3fr;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    
 }
 .patient-card{
     display: inline-block;
@@ -12,3 +11,26 @@
     border-radius: 30px;
     padding: 20px;
 }
+#approve-register-card{
+    background-color: aliceblue;
+    display: inline-block;
+}
+#approval-div{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    grid-column-gap: 20px;
+}
+#card-names> h3, #card-more-info > h3{
+    display: inline-block;
+}
+button{
+    color: white;
+    border-radius: 15px;
+}
+#deny-button{
+    background-color: darkred;
+}
+#approve-button{
+    background-color: darkgreen;
+}
+

@@ -19,7 +19,8 @@
 
         <ul>
             <h2 sec:authorize="isAuthenticated()">
-                Dr. <span sec:authentication="name"></span>
+                <span sec:authorize="hasRole('ADMIN')">Admin </span>
+                <span sec:authentication="name"></span>
             </h2>
 
             <a sec:authorize="!isAuthenticated()" th:href="@{user/login}">Login</a>

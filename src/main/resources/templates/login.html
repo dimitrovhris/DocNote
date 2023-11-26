@@ -28,7 +28,7 @@
                 <br>
                 <input th:name="password"  type="password" id="password" placeholder="Enter password">
                 <br>
-                <small >Invalid email or password</small>
+                <small th:if="${invalidLogin}">Invalid email or password</small>
                 <br>
                 <button type="submit" id="login-button-form">Login</button>
             </form>

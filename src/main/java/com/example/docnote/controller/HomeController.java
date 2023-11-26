@@ -1,31 +1,27 @@
 package com.example.docnote.controller;
 
-import com.example.docnote.model.entity.Patient;
-import com.example.docnote.util.CurrentUser;
+import com.example.docnote.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class HomeController {
-    private final CurrentUser currentUser;
-    public HomeController(CurrentUser currentUser) {
-        this.currentUser = currentUser;
+    private final UserRepository userRepository;
+    public HomeController( UserRepository userRepository) {
+        this.userRepository = userRepository;
 
     }
 
 
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("currentUser",currentUser);
+    public String index(){
         return "index";
     }
 
     @GetMapping("/home")
     public String home(Model model){
-
+        model.addAttribute("userRepository", userRepository.findByApprovedFalse());
         return "home";
     }
 

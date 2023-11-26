@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,8 +39,15 @@ public class UserEntity extends BaseEntity{
     @NotNull
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<UserRole> roles;
+    @NotNull
+    private boolean approved;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinTable(
+            name="users_roles",
+            joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+            private List<UserRole> roles = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -123,5 +131,13 @@ public class UserEntity extends BaseEntity{
 
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 }

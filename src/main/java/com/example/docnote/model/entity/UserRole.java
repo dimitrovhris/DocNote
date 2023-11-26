@@ -1,10 +1,9 @@
 package com.example.docnote.model.entity;
 
 import com.example.docnote.model.enums.UserRoleEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Table(name = "roles")
 @Entity
@@ -12,6 +11,9 @@ public class UserRole extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private UserRoleEnum role;
+
+    @ManyToMany
+    private List<UserEntity> users;
 
     public UserRole() {
 

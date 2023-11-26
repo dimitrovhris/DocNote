@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" th:href="@{/css/style-index.css}">
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-          <link rel="stylesheet" th:href="@{/css/style-home.css}">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/css/style-index.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" th:href="@{/css/style-home.css}">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
         <title>DocHero</title>
     </head>
 </head>
 <body>
 <header th:replace="~{fragments/commons::header}"></header>
-        <section>
-            <a th:href="@{/patient/add}">Add patient</a>
-            <h2>My patients:</h2>
-            <div id="patient-cards">
-            <div th:each="patient: ${patients}" th:object="${patient}" class="patient-card">
-                <h3 th:text="${patient.firstName}"></h3>
-                <h3 th:text="${patient.surname}"></h3>
-                <h3 th:text="${patient.lastName}"></h3>
-                <a th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
-                <a th:href="@{/test/add}">Order test</a>
-                <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
+
+
+<section id="admin-section" sec:authorize="hasRole('ADMIN')">
+    <h2>Manage website</h2>
+    <h3>Approve waiting registrations</h3>
+    <div id="approval-div">
+        <div id="approve-register-card" th:each="user: ${userRepository}">
+            <div id="card-names">
+                <h3 th:text="${user.firstName}"></h3>
+                <h3 th:text="${user.surname}"></h3>
+                <h3 th:text="${user.lastName}"></h3>
+            </div>
+            <div id="card-more-info">
+                <h3 th:text="${user.phone}"></h3>
+                <h3 th:text="${user.address}"></h3>
+                <h3 th:text="${user.email}"></h3>
+            </div>
+            <div>
+                <form th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
+                <button type="submit"  id="approve-button">Approve</button>
+                </form>
+                <a id="deny-button">Deny</a>
             </div>
         </div>
-        </section>
+    </div>
+    <a>See all doctors registrations</a>
+    <a>See all patient registrations</a>
+    <a>See other administrators</a>
+</section>
+
+
+<section sec:authorize="hasRole('USER')" id="user-section">
+    <a th:href="@{/patient/add}">Add patient</a>
+    <h2>My patients:</h2>
+    <div class="patient-cards">
+        <div th:each="patient: ${patients}" th:object="${patient}" class="patient-card">
+            <h3 th:text="${patient.firstName}"></h3>
+            <h3 th:text="${patient.surname}"></h3>
+            <h3 th:text="${patient.lastName}"></h3>
+            <a th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
+            <a th:href="@{/test/add}">Order test</a>
+            <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
+        </div>
+    </div>
+</section>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>
 </html>

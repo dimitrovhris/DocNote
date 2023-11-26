@@ -22,33 +22,33 @@ public class SecurityConfiguration {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
         requestCache.setMatchingRequestParameterName(null);
         httpSecurity
-         .authorizeHttpRequests(
-                //Define which URLs are visible for users
-                authorizeRequests -> authorizeRequests
-                        //All static resources which are situated in js, images, css are available for anyone
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        //Allow anyone to see the home page, register page and login page
-                        .requestMatchers("/", "/user/login", "/user/register", "/user/login-error").permitAll()
-                        //All other requests are authenticated
-                        .anyRequest().authenticated()
-        ).formLogin(
-                formLogin ->{
-                    formLogin
-                            //redirect here when we access something which is not allowed.
-                            //also this is the page where we perform login.
-                            .loginPage("/user/login")
-                            // The names of the input fields (in our case in login.html)
-                            .usernameParameter("emailOrUsername")
-                            .passwordParameter("password")
-                            .defaultSuccessUrl("/home")
-                            .failureForwardUrl("/user/login-error");
-                }
-        ).logout(
-                logout -> {
-                    logout.logoutUrl("/user/logout")
-                            .logoutSuccessUrl("/")
-                            .invalidateHttpSession(true);
-                })
+                .authorizeHttpRequests(
+                        //Define which URLs are visible for users
+                        authorizeRequests -> authorizeRequests
+                                //All static resources which are situated in js, images, css are available for anyone
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                //Allow anyone to see the home page, register page and login page
+                                .requestMatchers("/", "/user/login", "/user/register", "/user/login-error").permitAll()
+                                //All other requests are authenticated
+                                .anyRequest().authenticated()
+                ).formLogin(
+                        formLogin ->{
+                            formLogin
+                                    //redirect here when we access something which is not allowed.
+                                    //also this is the page where we perform login.
+                                    .loginPage("/user/login")
+                                    // The names of the input fields (in our case in login.html)
+                                    .usernameParameter("emailOrUsername")
+                                    .passwordParameter("password")
+                                    .defaultSuccessUrl("/home")
+                                    .failureForwardUrl("/user/login-error");
+                        }
+                ).logout(
+                        logout -> {
+                            logout.logoutUrl("/user/logout")
+                                    .logoutSuccessUrl("/")
+                                    .invalidateHttpSession(true);
+                        })
                 .requestCache((cache) -> cache
                         .requestCache(requestCache)
                 );
