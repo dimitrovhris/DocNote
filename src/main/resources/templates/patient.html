@@ -26,14 +26,21 @@
                 <h2 th:text="${patientProfile.lastName}"></h2>
         </div>
         <div class="appointments-section">
-            <h2>Appointments:</h2>
-
             <div class="appointments">
+                <h2>Appointments:</h2>
                 <div th:each="appointment: ${patientProfile.appointments}" class="appointment">
                     <h3 th:text="'Date: ' + ${appointment.visitDate}"></h3>
                     <h3 th:text="'Time: ' + ${appointment.hour}"></h3>
                     <h3 th:text="'Diagnosis: ' + ${appointment.diagnosis}"></h3>
                     <a th:href="@{/appointment/{id}(id = ${appointment.id})}">See more info</a>
+                </div>
+            </div>
+            <div class="documents">
+                <h2>Sickness leave documents:</h2>
+                <div th:each="document: ${patientProfile.sicknessLeaveDocuments}">
+                    <h3 th:text="'Start date: ' + ${#dates.format(${document.sickLeaveStart}, 'dd-MM-yyyy')}"></h3>
+                    <h3 th:text="'Start date: ' + ${#dates.format(${document.sickLeaveEnd}, 'dd-MM-yyyy')}"></h3>
+
                 </div>
             </div>
         </div>

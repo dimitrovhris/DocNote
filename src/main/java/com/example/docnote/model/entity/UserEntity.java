@@ -140,4 +140,5 @@ public class UserEntity extends BaseEntity{
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
+
 }

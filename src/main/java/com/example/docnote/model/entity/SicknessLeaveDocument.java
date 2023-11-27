@@ -1,7 +1,9 @@
 package com.example.docnote.model.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -12,16 +14,15 @@ public class SicknessLeaveDocument extends BaseEntity{
 
 
 
-    @Column(name = "sick_leave_start")
-    private LocalDate sickLeaveStart;
+    @Column(name = "date_start")
+    private LocalDate dateStart;
 
-    @FutureOrPresent
-    @Column(name = "sick_leave_end")
-    private LocalDate sickLeaveEnd;
+    @Column(name = "date_end")
+    private LocalDate dateEnd;
 
     @NotNull
-    @Column(name = "employer_name")
-    private String employerName;
+    @Column(name = "employer_first_name")
+    private String employerFirstName;
 
     @NotNull
     @Column(name = "employer_last_name")
@@ -36,28 +37,28 @@ public class SicknessLeaveDocument extends BaseEntity{
     @OneToOne
     private Patient patient;
 
-    public LocalDate getSickLeaveStart() {
-        return sickLeaveStart;
+    public LocalDate getDateStart() {
+        return dateStart;
     }
 
-    public void setSickLeaveStart(LocalDate sickLeaveStart) {
-        this.sickLeaveStart = sickLeaveStart;
+    public void setDateStart(LocalDate dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public LocalDate getSickLeaveEnd() {
-        return sickLeaveEnd;
+    public LocalDate getDateEnd() {
+        return dateEnd;
     }
 
-    public void setSickLeaveEnd(LocalDate sickLeaveEnd) {
-        this.sickLeaveEnd = sickLeaveEnd;
+    public void setDateEnd(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
-    public String getEmployerName() {
-        return employerName;
+    public String getEmployerFirstName() {
+        return employerFirstName;
     }
 
-    public void setEmployerName(String employerName) {
-        this.employerName = employerName;
+    public void setEmployerFirstName(String employerFirstName) {
+        this.employerFirstName = employerFirstName;
     }
 
     public String getEmployerLastName() {

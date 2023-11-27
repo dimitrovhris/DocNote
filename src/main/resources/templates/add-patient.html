@@ -44,9 +44,9 @@
                     <input th:name="lastName" th:field="*{lastName}" type = "text" id="last-name" placeholder="Enter patient's last name">
                         <small th:if="${#fields.hasErrors('lastName')}">Enter a valid name</small>
                         <br>
-                    <label for="phone">Phone:</label>
+                    <label for="phone">Egn:</label>
                     <br>
-                    <input  th:name="phone" th:field="*{phone}" type = "text" id="phone" placeholder="Enter patient's phone number">
+                    <input  th:name="egn" th:field="*{egn}" type = "text" id="phone" placeholder="Enter patient's egn here">
                         <br>
                         <small th:if="${#fields.hasErrors('phone')}">Enter a valid phone</small>
                         <br>

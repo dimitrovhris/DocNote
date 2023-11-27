@@ -18,19 +18,21 @@
 
 <main>
     <div>
-        <form action="">
+        <form th:method="POST" th:action="@{/document/add/{id}(id=${patient.id})}" th:object="${documentAddDTO}">
             <h1>Add sickness leave document</h1>
             <label for="date-start">Start date:</label>
-            <input type="date" id="date-start">
+            <input name="startDate" th:field="*{dateStart}" type="date" id="date-start">
             <label for="date-end">End date:</label>
-            <input type="date" id="date-end">
+            <input name="endDate" th:field="*{dateEnd}" type="date" id="date-end">
             <label for="first-name">First name:</label>
-            <input type="text" id="first-name">
-            <label for="first-name">First name:</label>
-            <label for="last-name"></label>
-            <input type="text" id="last-name">
+            <input th:name="employerFirstName" th:value="${patient.firstName}" type="text" id="first-name"  readonly>
+            <label for="last-name">Last name:</label>
+            <input th:name="employerLastName" th:value="${patient.lastName}" type="text" id="last-name"  readonly>
             <label for="reason">Reason:</label>
-            <input type="text" id="reason">
+            <input name="reason" th:field="*{reason}" type="text" id="reason">
+            <label for="company">Company:</label>
+            <input name="companyName" th:field="*{companyName}" type="text" id="company">
+            <button type="submit">Add</button>
         </form>
     </div>
     <img th:src="@{/images/add-document.png}" alt="">

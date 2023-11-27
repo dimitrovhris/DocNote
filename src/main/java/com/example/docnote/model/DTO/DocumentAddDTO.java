@@ -8,9 +8,9 @@ public class DocumentAddDTO {
 
     private LocalDate dateEnd;
 
-    private String firstName;
+    private String employerFirstName;
 
-    private String lastName;
+    private String employerLastName;
 
     private String companyName;
 
@@ -32,20 +32,20 @@ public class DocumentAddDTO {
         this.dateEnd = dateEnd;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmployerFirstName() {
+        return employerFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmployerFirstName(String employerFirstName) {
+        this.employerFirstName = employerFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmployerLastName() {
+        return employerLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmployerLastName(String employerLastName) {
+        this.employerLastName = employerLastName;
     }
 
     public String getCompanyName() {

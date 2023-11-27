@@ -1,9 +1,9 @@
 package com.example.docnote.config;
 
 
+import com.example.docnote.filter.LoginPageFilter;
 import com.example.docnote.repository.UserRepository;
 import com.example.docnote.service.impl.DocNoteUserDetailsService;
-
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
@@ -22,13 +23,15 @@ public class SecurityConfiguration {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
         requestCache.setMatchingRequestParameterName(null);
         httpSecurity
+                .addFilterBefore(new LoginPageFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(
                         //Define which URLs are visible for users
                         authorizeRequests -> authorizeRequests
                                 //All static resources which are situated in js, images, css are available for anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 //Allow anyone to see the home page, register page and login page
-                                .requestMatchers("/", "/user/login", "/user/register", "/user/login-error").permitAll()
+                                .requestMatchers( "/", "/user/login", "/user/register", "/user/login-error").permitAll()
+
                                 //All other requests are authenticated
                                 .anyRequest().authenticated()
                 ).formLogin(

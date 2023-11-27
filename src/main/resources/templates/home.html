@@ -20,10 +20,10 @@
 
 
 <section id="admin-section" sec:authorize="hasRole('ADMIN')">
-    <h2>Manage website</h2>
+    <h2 sec:authentication="">Manage website</h2>
     <h3>Approve waiting registrations</h3>
     <div id="approval-div">
-        <div id="approve-register-card" th:each="user: ${userRepository}">
+        <div id="approve-register-card" th:each="user: ${userRepository.findByApprovedFalse()}">
             <div id="card-names">
                 <h3 th:text="${user.firstName}"></h3>
                 <h3 th:text="${user.surname}"></h3>
@@ -38,7 +38,9 @@
                 <form th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
                 <button type="submit"  id="approve-button">Approve</button>
                 </form>
-                <a id="deny-button">Deny</a>
+                <form th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
+                    <button type="submit"  id="deny-button">Deny</button>
+                </form>
             </div>
         </div>
     </div>
@@ -49,10 +51,16 @@
 
 
 <section sec:authorize="hasRole('USER')" id="user-section">
+    <div th:unless=" ${user.approved}" id="not-approved-user">
+    <h1 th:text="'Welcome, ' + ${user.firstName} +' ' + ${user.lastName}"></h1>
+    <h2>Your registration is waiting for approval from our administrators!</h2>
+    <h2>You are not able to add patients!</h2>
+    </div>
+    <div th:if="${user.approved}" id="approved-user">
     <a th:href="@{/patient/add}">Add patient</a>
     <h2>My patients:</h2>
     <div class="patient-cards">
-        <div th:each="patient: ${patients}" th:object="${patient}" class="patient-card">
+        <div th:each="patient: ${user.patients}" th:object="${patient}" class="patient-card">
             <h3 th:text="${patient.firstName}"></h3>
             <h3 th:text="${patient.surname}"></h3>
             <h3 th:text="${patient.lastName}"></h3>
@@ -60,6 +68,7 @@
             <a th:href="@{/test/add}">Order test</a>
             <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
         </div>
+    </div>
     </div>
 </section>
 <footer th:replace="~{fragments/commons::footer}"></footer>

@@ -20,17 +20,19 @@ public class DocNoteUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String emailOrUsername) throws UsernameNotFoundException {
         return userRepository.findFirstByEmailOrUsername(emailOrUsername, emailOrUsername)
-                .map(DocNoteUserDetailsService::map)
+                .map(this::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User with email or username " + emailOrUsername + " not found!"));
 
     }
-    private static UserDetails map(UserEntity user){
+    private UserDetails map(UserEntity user){
         return User.withUsername(user.getUsername())
                 .password(user.getPassword())
+
                 .authorities(user.getRoles().stream().map(DocNoteUserDetailsService::map).toList())
                 .build();
     }
     private static GrantedAuthority map(UserRole userRole){
         return new SimpleGrantedAuthority("ROLE_" + userRole.getRole().name());
     }
+
 }

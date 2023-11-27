@@ -2,8 +2,11 @@ package com.example.docnote.service.impl;
 
 import com.example.docnote.model.DTO.UserRegisterDTO;
 import com.example.docnote.model.entity.UserEntity;
+import com.example.docnote.model.entity.UserRole;
+import com.example.docnote.model.enums.UserRoleEnum;
 import com.example.docnote.repository.UserRepository;
 import com.example.docnote.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +34,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         user.setApproved(false);
+        user.getRoles().add(new UserRole(UserRoleEnum.USER));
         userRepository.save(user);
         
     }
@@ -56,6 +60,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean containsEmail(UserRegisterDTO userRegisterDTO) {
         return userRepository.findFirstByEmail(userRegisterDTO.getEmail()).isPresent();
+    }
+
+    @Override
+    public void remove(UserEntity user) {
+        userRepository.delete(user);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.docnote.service;
 
 import com.example.docnote.model.DTO.UserRegisterDTO;
+import com.example.docnote.model.entity.UserEntity;
 
 public interface UserService {
 
@@ -10,5 +11,6 @@ public interface UserService {
     boolean containsPhone(UserRegisterDTO doctorRegisterDTO);
     boolean containsUsername(UserRegisterDTO doctorRegisterDTO);
     boolean containsEmail(UserRegisterDTO doctorRegisterDTO);
+    void remove(UserEntity user);
 
 }

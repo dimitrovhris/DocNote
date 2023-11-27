@@ -4,7 +4,6 @@ import com.example.docnote.model.DTO.UserRegisterDTO;
 import com.example.docnote.model.entity.UserEntity;
 import com.example.docnote.repository.UserRepository;
 import com.example.docnote.service.UserService;
-import com.example.docnote.util.CurrentUser;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,7 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository, CurrentUser currentUser) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
 
@@ -71,6 +70,12 @@ public class UserController {
         UserEntity user = userRepository.findById(id).get();
         user.setApproved(true);
         userRepository.save(user);
+        return "redirect:/home";
+    }
+    @PostMapping("/deny/{id}")
+    public String deny(@PathVariable Long id){
+        UserEntity user = userRepository.findById(id).get();
+        userService.remove(user);
         return "redirect:/home";
     }
 
