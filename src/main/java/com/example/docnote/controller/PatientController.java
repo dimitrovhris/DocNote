@@ -53,5 +53,13 @@ public class PatientController {
         model.addAttribute("patientProfile", patientProfile);
         return "patient";
     }
+    @GetMapping("/{id}-successfully-added-test")
+    public String showProfileWithTestMessage(@PathVariable Long id, Model model){
+        Patient patientProfile = patientRepository.findById(id).get();
+        model.addAttribute("patientProfile", patientProfile);
+        String testMessage = "Successfully added test!";
+        model.addAttribute("testMessage", testMessage);
+        return "patient";
+    }
 
 }

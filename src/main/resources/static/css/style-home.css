@@ -33,4 +33,30 @@ button{
 #approve-button{
     background-color: darkgreen;
 }
-
+#add-patient-button{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding: 10px 25px 10px;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: black;
+    border-radius: 15px;
+    font-size: 20px;
+}
+#add-patient-button-div{
+    text-align: center;
+    margin-top: 10px;
+}
+#my-patients-heading{
+    text-align: center;
+}
+#user-section{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+#info-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

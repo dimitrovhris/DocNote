@@ -77,11 +77,11 @@ public class Patient extends BaseEntity{
         this.lastName = lastName;
     }
 
-    public String getPhone() {
+    public String getEgn() {
         return egn;
     }
 
-    public void setPhone(String egn) {
+    public void setEgn(String egn) {
         this.egn = egn;
     }
 

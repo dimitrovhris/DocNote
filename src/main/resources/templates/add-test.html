@@ -4,12 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="style-index.css">
+          <link rel="stylesheet" th:href="@{/css/style-index.css}">
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
           
-          <link rel="stylesheet" href="style-register.css">
-          <link rel="stylesheet" href="style-add-test.css">
+          <link rel="stylesheet" th:href="@{/css/style-register.css}">
+          <link rel="stylesheet" th:href="@{/css/style-add-test.css}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
         <title>DocHero</title>
@@ -20,12 +20,12 @@
 
 
             <div id="main-register-div">
-                <form>
+                <form th:object="${testAddDTO}" th:method="POST" th:action="@{/test/add/{id}(id=${id})}">
                     <h1>Order test</h1>
                     
                     <label for="type">Test type:</label>
                     <br>
-                            <select id="type">
+                            <select id="type" th:field="*{type}">
                                 <option value="">Select</option>
                                 <option value="BLOOD">Blood test</option>
                                 <option value="URINE">Urine test</option>
@@ -38,26 +38,25 @@
                     <br>
                     <label for="test">Test name:</label>
                     <br>
-                    <input type="text" id="test" placeholder="Enter test name">
+                    <input th:field="*{name}" type="text" id="test" placeholder="Enter test name">
                     <br>
                     <label for="diagnosis-desc">Description</label>
                     <br>
-                    <textarea style="height: 40px; width: 200px;" id="diagnosis-desc"></textarea>
+                    <textarea th:field="*{description}" style="height: 40px; width: 200px;" id="diagnosis-desc"></textarea>
                     <br>
-                    <label for="start-date">Order date:</label>
+                    <label for="order-date">Order date:</label>
                     <br>
-                    <input type="date" id="start-date" placeholder="Enter end date">
+                    <input th:field="*{orderDate}" type="date" id="order-date" placeholder="Enter end date">
                     <br>
                     
                     <label for="end-date">Valid until:</label>
                     <br>
-                    <input type="date" id="end-date" placeholder="Enter end date">
+                    <input th:field="*{validUntil}" type="date" id="end-date" placeholder="Enter end date">
                     <br>
-                    
-                    <button type="submit" id="register-button-form" href="">ORDER</button>
+                    <button type="submit" id="register-button-form">ORDER</button>
                 </form>
             </div>
-            <img class="register-img" src="images/test.png" alt="Doctor waving">
+            <img class="register-img" th:src="@{/images/test.png}" alt="Doctor waving">
         </div>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>

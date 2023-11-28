@@ -1,6 +1,7 @@
 package com.example.docnote.service;
 
-import org.springframework.stereotype.Service;
+import com.example.docnote.model.DTO.TestAddDTO;
 
 public interface TestService {
+    void add(TestAddDTO testAddDTO, Long id);
 }

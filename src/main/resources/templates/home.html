@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/style-home.css}">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
         <title>DocHero</title>
     </head>
@@ -36,10 +37,10 @@
             </div>
             <div>
                 <form th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
-                <button type="submit"  id="approve-button">Approve</button>
+                    <button type="submit" id="approve-button">Approve</button>
                 </form>
                 <form th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
-                    <button type="submit"  id="deny-button">Deny</button>
+                    <button type="submit" id="deny-button">Deny</button>
                 </form>
             </div>
         </div>
@@ -52,23 +53,38 @@
 
 <section sec:authorize="hasRole('USER')" id="user-section">
     <div th:unless=" ${user.approved}" id="not-approved-user">
-    <h1 th:text="'Welcome, ' + ${user.firstName} +' ' + ${user.lastName}"></h1>
-    <h2>Your registration is waiting for approval from our administrators!</h2>
-    <h2>You are not able to add patients!</h2>
+        <h1 th:text="'Welcome, ' + ${user.firstName} +' ' + ${user.lastName}"></h1>
+        <h2>Your registration is waiting for approval from our administrators!</h2>
+        <h2>You are not able to add patients!</h2>
     </div>
+
+    <div id="add-patient-button-div">
+        <a id="add-patient-button" th:href="@{/patient/add}"><i class="fa-solid fa-plus"></i> Add patient</a>
+    </div>
+
     <div th:if="${user.approved}" id="approved-user">
-    <a th:href="@{/patient/add}">Add patient</a>
-    <h2>My patients:</h2>
-    <div class="patient-cards">
-        <div th:each="patient: ${user.patients}" th:object="${patient}" class="patient-card">
-            <h3 th:text="${patient.firstName}"></h3>
-            <h3 th:text="${patient.surname}"></h3>
-            <h3 th:text="${patient.lastName}"></h3>
-            <a th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
-            <a th:href="@{/test/add}">Order test</a>
-            <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
+        <div id="my-patients-heading">
+            <h2>My patients:</h2>
         </div>
-    </div>
+
+        <div class="patient-cards">
+            <div th:each="patient: ${user.patients}" th:object="${patient}" class="patient-card">
+                <div id="info-div">
+                    <div>
+                        <h3 th:text="${patient.firstName}"></h3>
+                        <h3 th:text="${patient.surname}"></h3>
+                        <h3 th:text="${patient.lastName}"></h3>
+                    </div>
+                    <div>
+                        <h3 th:text="'Id: ' + ${patient.egn}"></h3>
+                        <h3 th:text="'Date of birth:v' + ${patient.birthday}"></h3>
+                    </div>
+                </div>
+                <a id="open-profile-button" th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
+                <a th:href="@{/test/add/{id}(id=${patient.id})}">Order test</a>
+                <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
+            </div>
+        </div>
     </div>
 </section>
 <footer th:replace="~{fragments/commons::footer}"></footer>
