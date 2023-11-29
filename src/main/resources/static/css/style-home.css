@@ -1,4 +1,6 @@
-
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
 .patient-cards{
     display: grid;
     grid-template-columns: 3fr 3fr 3fr;
@@ -45,6 +47,10 @@ button{
     border-radius: 15px;
     font-size: 20px;
 }
+#add-patient-button:hover{
+    background-color: darkblue;
+    color: white;
+}
 #add-patient-button-div{
     text-align: center;
     margin-top: 10px;
@@ -58,5 +64,39 @@ button{
 }
 #info-div{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.card-button{
+    padding: 10px 10px 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    text-decoration: none;
+}
+#open-profile-button{
+    background-color: black;
+    color: white;
+}
+#open-profile-button:hover{
+    background-color: dimgrey;
+}
+#order-test-button{
+    background-color: darkblue;
+    color: white;
+}
+#order-test-button:hover{
+    background-color: mediumblue;
+}
+#patient-buttons-div{
+    display: flex;
+    justify-content: space-between;
+}
+#add-appointment-button{
+    background-color: darkgreen;
+    color: white;
+}
+#add-appointment-button:hover{
+    background-color: forestgreen;
+}
+.info-h{
+    display: inline-block;
 }

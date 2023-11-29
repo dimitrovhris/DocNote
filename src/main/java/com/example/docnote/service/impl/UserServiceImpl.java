@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userRegisterDTO.getLastName());
         user.setUsername(userRegisterDTO.getUsername());
         user.setEmail(userRegisterDTO.getEmail());
-        user.setPhone(userRegisterDTO.getPhone());
+        user.setEgn(userRegisterDTO.getEgn());
         user.setAddress(userRegisterDTO.getAddress());
 
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean containsPhone(UserRegisterDTO userRegisterDTO) {
-        return userRepository.findFirstByPhone(userRegisterDTO.getPhone()).isPresent();
+        return userRepository.findFirstByEgn(userRegisterDTO.getEgn()).isPresent();
     }
 
     @Override

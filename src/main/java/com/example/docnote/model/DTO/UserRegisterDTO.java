@@ -25,7 +25,7 @@ public class UserRegisterDTO {
 
     @NotEmpty
     @Size(min = 10, max = 10)
-    private String phone;
+    private String egn;
 
     @NotEmpty
     @Email
@@ -62,9 +62,7 @@ public class UserRegisterDTO {
         return lastName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+
 
     public String getEmail() {
         return email;
@@ -94,8 +92,12 @@ public class UserRegisterDTO {
         this.lastName = lastName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getEgn() {
+        return egn;
+    }
+
+    public void setEgn(String egn) {
+        this.egn = egn;
     }
 
     public void setEmail(String email) {

@@ -76,13 +76,35 @@
                         <h3 th:text="${patient.lastName}"></h3>
                     </div>
                     <div>
-                        <h3 th:text="'Id: ' + ${patient.egn}"></h3>
-                        <h3 th:text="'Date of birth:v' + ${patient.birthday}"></h3>
+                        <div>
+                            <i class="fa-solid fa-ruler-vertical"></i>
+                            <h3 class="info-h" th:text="${patient.height} + ' cm'"></h3>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-weight-scale"></i>
+                            <h3 class="info-h" th:text="${patient.weight} + ' kg'"></h3>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div>
+                            <i class="fa-solid fa-id-card"></i>
+                            <h3 class="info-h" th:text="${patient.egn}"></h3>
+                        </div>
+                        <div>
+                            <i class="fa-regular fa-calendar"></i>
+                            <h3 class="info-h" th:text="${patient.birthday}"></h3>
+                        </div>
                     </div>
                 </div>
-                <a id="open-profile-button" th:href="@{/patient/{id}(id= *{id})}">Open profile</a>
-                <a th:href="@{/test/add/{id}(id=${patient.id})}">Order test</a>
-                <a th:href="@{/appointment/add/{id}(id = *{id})}">Add appointment</a>
+                <div id="patient-buttons-div">
+                    <a class="card-button" id="open-profile-button" th:href="@{/patient/{id}(id= *{id})}"><i
+                            class="fa-solid fa-user"></i> Open profile</a>
+                    <a class="card-button" id="order-test-button" th:href="@{/test/add/{id}(id=${patient.id})}"><i
+                            class="fa-solid fa-vial-virus"></i> Order test</a>
+                    <a class="card-button" id="add-appointment-button" th:href="@{/appointment/add/{id}(id = *{id})}"><i
+                            class="fa-solid fa-plus"></i> Add appointment</a>
+                </div>
             </div>
         </div>
     </div>

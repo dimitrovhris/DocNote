@@ -26,7 +26,7 @@ public class UserEntity extends BaseEntity{
     private String username;
 
     @Column(unique = true, nullable = false)
-    private String phone;
+    private String egn;
 
     @Email
     @Column(unique = true, nullable = false)
@@ -81,12 +81,12 @@ public class UserEntity extends BaseEntity{
         this.username = username;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEgn() {
+        return egn;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEgn(String egn) {
+        this.egn = egn;
     }
 
     public String getEmail() {
