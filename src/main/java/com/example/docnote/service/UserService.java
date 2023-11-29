@@ -8,7 +8,7 @@ public interface UserService {
     void register(UserRegisterDTO doctorRegisterDTO);
 
     boolean confirmPassword(UserRegisterDTO doctorRegisterDTO);
-    boolean containsPhone(UserRegisterDTO doctorRegisterDTO);
+    boolean containsEgn(UserRegisterDTO doctorRegisterDTO);
     boolean containsUsername(UserRegisterDTO doctorRegisterDTO);
     boolean containsEmail(UserRegisterDTO doctorRegisterDTO);
     void remove(UserEntity user);

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" th:href="@{/css/style-index.css}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/style-patient.css}">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
@@ -18,41 +18,60 @@
 <body>
 <header th:replace="~{fragments/commons::header}"></header>
 <main th:object="${patientProfile}">
-    <div>
+    <div th:if="${messageShow}">
         <h1 th:text="${testMessage}"></h1>
     </div>
 
     <div class="main-info">
-        <h2>Main info:</h2>
-        <h2 th:text="${patientProfile.firstName}"></h2>
-        <h2 th:text="${patientProfile.surname}"></h2>
-        <h2 th:text="${patientProfile.lastName}"></h2>
+
+        <div id="inner-info">
+            <h1><i class="fa-solid fa-user"></i> Main info:</h1>
+            <h2 th:text="${patientProfile.firstName}"></h2>
+            <h2 th:text="${patientProfile.surname}"></h2>
+            <h2 th:text="${patientProfile.lastName}"></h2>
+
+        </div>
+        <div id="other-info">
+            <h2 th:text="${patientProfile.birthday}"></h2>
+            <h2 th:text="${patientProfile.egn}"></h2>
+            <h2 th:text="${patientProfile.address}"></h2>
+        </div>
+        <div id="body-info">
+            <h2 th:text="'Height: ' + ${patientProfile.height} + ' cm'"></h2>
+            <h2 th:text="'Weight: ' + ${patientProfile.weight} + ' kg'"></h2>
+        </div>
     </div>
-    <div class="appointments-section">
+    <div class="important-info">
         <div class="appointments">
-            <h2>Appointments:</h2>
-            <div th:each="appointment: ${patientProfile.appointments}" class="appointment">
+            <h2><i class="fa-solid fa-stethoscope"></i> Appointments:</h2>
+            <div id="appointment-div" th:each="appointment: ${patientProfile.appointments}" class="appointment">
                 <h3 th:text="'Date: ' + ${appointment.visitDate}"></h3>
                 <h3 th:text="'Time: ' + ${appointment.hour}"></h3>
                 <h3 th:text="'Diagnosis: ' + ${appointment.diagnosis}"></h3>
-                <a th:href="@{/appointment/{id}(id = ${appointment.id})}">See more info</a>
+                <a id="see-more-info-button" th:href="@{/appointment/{id}(id = ${appointment.id})}">See more info</a>
             </div>
         </div>
         <div class="documents">
-            <h2>Sickness leave documents:</h2>
-            <div th:each="document: ${patientProfile.sicknessLeaveDocuments}">
-                <h3 th:text="'Start date: ' + ${#dates.format(${document.dateStart}, 'dd-MM-yyyy')}"></h3>
-                <h3 th:text="'Start date: ' + ${#dates.format(${document.dateEnd}, 'dd-MM-yyyy')}"></h3>
+            <h2><i class="fa-solid fa-file-contract"></i> Sickness leave documents:</h2>
 
+            <div id="document-div" th:each="document: ${patientProfile.sicknessLeaveDocuments}">
+                    <h3 th:text="'Start date: ' + ${document.dateStart}"></h3>
+                    <h3 th:text="'End date: ' + ${document.dateEnd}"></h3>
+                    <h3 th:text="'Reason: ' + ${document.reason}"></h3>
+            </div>
+        </div>
+        <div class="tests-info">
+            <h2><i class="fa-solid fa-vial-virus"></i> Ordered tests</h2>
+            <div id="test-info-div" th:each="test: ${patientProfile.tests}">
+                <h3 th:text="'Type: ' + ${test.type}"></h3>
+                <h3 th:text="'Name: ' + ${test.name}"></h3>
+                <h3 th:text="'Ordered on: ' + ${test.orderDate}"></h3>
+                <h3 th:text="'Valid until: ' + ${test.validUntil}"></h3>
+                <h3 th:text="'Description: ' + ${test.description}"></h3>
             </div>
         </div>
     </div>
-    <div class="tests-info">
-        <h2>Ordered tests</h2>
-        <div th:each="test: ${patientProfile.tests}">
-            <h2 th:text="'Name: ' + ${test.name}"></h2>
-        </div>
-    </div>
+
 </main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 </body>

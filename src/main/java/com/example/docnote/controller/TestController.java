@@ -35,7 +35,7 @@ public class TestController {
         if(bindingResult.hasErrors()){
             rAtt.addFlashAttribute("testAddDTO", testAddDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.testAddDTO");
-            return "redirect:/test/add{id}";
+            return "redirect:/test/add/{id}";
         }
         testService.add(testAddDTO, id);
         return "redirect:/patient/{id}-successfully-added-test";

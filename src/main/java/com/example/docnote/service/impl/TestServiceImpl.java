@@ -28,6 +28,7 @@ public class TestServiceImpl implements TestService {
         Patient patient = patientRepository.findById(id).get();
         patient.getTests().add(test);
         test.setPatient(patient);
+        patientRepository.save(patient);
         testRepository.save(test);
     }
 }

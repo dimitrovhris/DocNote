@@ -6,7 +6,6 @@ import com.example.docnote.model.entity.UserRole;
 import com.example.docnote.model.enums.UserRoleEnum;
 import com.example.docnote.repository.UserRepository;
 import com.example.docnote.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean containsPhone(UserRegisterDTO userRegisterDTO) {
+    public boolean containsEgn(UserRegisterDTO userRegisterDTO) {
         return userRepository.findFirstByEgn(userRegisterDTO.getEgn()).isPresent();
     }
 

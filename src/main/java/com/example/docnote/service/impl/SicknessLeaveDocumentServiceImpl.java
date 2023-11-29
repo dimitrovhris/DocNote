@@ -26,7 +26,8 @@ public class SicknessLeaveDocumentServiceImpl implements SicknessLeaveDocumentSe
         SicknessLeaveDocument document = modelMapper.map(documentAddDTO, SicknessLeaveDocument.class);
         Patient patient = patientRepository.findById(id).get();
         document.setPatient(patient);
+        patient.getSicknessLeaveDocuments().add(document);
         documentRepository.save(document);
-
+        patientRepository.save(patient);
     }
 }

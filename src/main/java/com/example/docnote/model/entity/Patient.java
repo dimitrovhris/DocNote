@@ -50,7 +50,7 @@ public class Patient extends BaseEntity{
     @OneToMany
     private List<SicknessLeaveDocument> sicknessLeaveDocuments;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Test> tests;
 
     public String getFirstName() {

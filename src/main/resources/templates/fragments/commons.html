@@ -23,9 +23,9 @@
                 <span sec:authentication="name"></span>
             </h2>
 
-            <a sec:authorize="!isAuthenticated()" th:href="@{user/login}">Login</a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/user/login}">Login</a>
 
-            <a sec:authorize="!isAuthenticated()" th:href="@{user/register}">Register</a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/user/register}">Register</a>
 
 
             <form th:method="POST" th:action="@{/user/logout}">

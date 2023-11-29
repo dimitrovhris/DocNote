@@ -59,6 +59,7 @@ public class PatientController {
         model.addAttribute("patientProfile", patientProfile);
         String testMessage = "Successfully added test!";
         model.addAttribute("testMessage", testMessage);
+        model.addAttribute("messageShow", true);
         return "patient";
     }
 

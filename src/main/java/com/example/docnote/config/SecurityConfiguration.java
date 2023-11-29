@@ -13,15 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
 public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
-        requestCache.setMatchingRequestParameterName(null);
         httpSecurity
                 .addFilterBefore(new LoginPageFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(
@@ -30,7 +27,7 @@ public class SecurityConfiguration {
                                 //All static resources which are situated in js, images, css are available for anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 //Allow anyone to see the home page, register page and login page
-                                .requestMatchers( "/", "/user/login", "/user/register", "/user/login-error").permitAll()
+                                .requestMatchers( "/","/user/register", "/user/login", "/user/login-error").permitAll()
 
                                 //All other requests are authenticated
                                 .anyRequest().authenticated()
@@ -52,9 +49,7 @@ public class SecurityConfiguration {
                                     .logoutSuccessUrl("/")
                                     .invalidateHttpSession(true);
                         })
-                .requestCache((cache) -> cache
-                        .requestCache(requestCache)
-                );
+                ;
         return httpSecurity.build();
     }
     @Bean

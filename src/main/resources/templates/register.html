@@ -45,9 +45,9 @@
             <br>
             <label for="phone">Phone:</label>
             <br>
-            <input type = "text" th:name="phone" th:field="*{phone}" id="phone" placeholder="Enter your phone number">
+            <input type = "text" th:name="phone" th:field="*{egn}" id="phone" placeholder="Enter your phone number">
             <br>
-            <small th:if="${#fields.hasErrors('phone') || doctorService.containsPhone(doctorRegisterDTO)}">Phone should be 10 digits long and unique</small>
+            <small th:if="${#fields.hasErrors('egn') || doctorService.containsEgn(doctorRegisterDTO)}">Phone should be 10 digits long and unique</small>
             <br>
             <label for="email" >Email:</label>
             <br>

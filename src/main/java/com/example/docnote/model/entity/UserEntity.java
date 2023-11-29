@@ -141,4 +141,20 @@ public class UserEntity extends BaseEntity{
         this.approved = approved;
     }
 
+    public UserEntity(String firstName, String surname, String lastName, String username, String egn, String email, String address, String password, boolean approved, List<UserRole> roles, List<Patient> patients) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.lastName = lastName;
+        this.username = username;
+        this.egn = egn;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.approved = approved;
+        this.roles = roles;
+        this.patients = patients;
+    }
+
+    public UserEntity() {
+    }
 }

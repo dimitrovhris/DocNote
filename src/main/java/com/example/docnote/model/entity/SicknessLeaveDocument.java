@@ -2,7 +2,7 @@ package com.example.docnote.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "treatments")
 public class SicknessLeaveDocument extends BaseEntity{
-
 
 
     @Column(name = "date_start")
@@ -34,7 +33,7 @@ public class SicknessLeaveDocument extends BaseEntity{
     @NotNull
     private String reason;
 
-    @OneToOne
+    @ManyToOne
     private Patient patient;
 
     public LocalDate getDateStart() {

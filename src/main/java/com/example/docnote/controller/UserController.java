@@ -46,7 +46,7 @@ public class UserController {
                 || !userService.confirmPassword(userRegisterDTO)
                 || userService.containsUsername(userRegisterDTO)
                 || userService.containsEmail(userRegisterDTO)
-                || userService.containsPhone(userRegisterDTO)) {
+                || userService.containsEgn(userRegisterDTO)) {
             rAtt.addFlashAttribute("doctorRegisterDTO", userRegisterDTO);
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorRegisterDTO", bindingResult);
             return "redirect:/user/register";
