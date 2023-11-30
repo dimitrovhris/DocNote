@@ -20,7 +20,7 @@
         <ul>
             <h2 sec:authorize="isAuthenticated()">
                 <span sec:authorize="hasRole('ADMIN')">Admin </span>
-                <span sec:authentication="name"></span>
+                <span id="header-username" sec:authentication="name"></span>
             </h2>
 
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/login}">Login</a>
@@ -28,8 +28,8 @@
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/register}">Register</a>
 
 
-            <form th:method="POST" th:action="@{/user/logout}">
-            <input sec:authorize="isAuthenticated()" type="submit" value="Logout">
+            <form id="logout-form" th:method="POST" th:action="@{/user/logout}">
+                <input id="logout-button" sec:authorize="isAuthenticated()" type="submit" value="Logout">
             </form>
         </ul>
     </nav>

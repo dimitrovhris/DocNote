@@ -174,7 +174,22 @@ footer{
     padding: 30px;
     border-radius: 20px;
 }
-
+#logout-button{
+    background-color: transparent;
+    border-style: none;
+    display: inline-block;
+    font-size: 150%;
+}
+#logout-form{
+    display: inline-block;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+#header-username{
+    margin: 0;
+}
 
 
 
