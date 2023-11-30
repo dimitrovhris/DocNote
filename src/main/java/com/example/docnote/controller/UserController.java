@@ -66,10 +66,11 @@ public class UserController {
         return "login";
     }
     @PostMapping("/approve/{id}")
-    public String approve(@PathVariable Long id){
+    public String approve(@PathVariable Long id, Model model){
         UserEntity user = userRepository.findById(id).get();
         user.setApproved(true);
         userRepository.save(user);
+
         return "redirect:/home";
     }
     @PostMapping("/deny/{id}")

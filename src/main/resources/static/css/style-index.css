@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 body{
-    background-color: rgb(59, 164, 200);
+    background-color: rgb(136, 215, 243);
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -71,7 +71,7 @@ header > i{
 #main-div{
     display: inline-block;
     font-family: 'Ubuntu', sans-serif;
-    background-color: rgb(59, 164, 200);
+    background-color: rgb(136, 215, 243);
     padding: 5%;
     left: 10%;
     border-radius: 20px;

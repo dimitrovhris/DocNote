@@ -18,32 +18,52 @@
 </head>
 <body>
 <header th:replace="~{fragments/commons::header}"></header>
-
-
 <section id="admin-section" sec:authorize="hasRole('ADMIN')">
-    <h2 sec:authentication="">Manage website</h2>
-    <h3>Approve waiting registrations</h3>
+    <div id="admin-heading">
+        <div id="manage-heading">
+            <h4 sec:authentication="">Manage DocNote</h4>
+            <h5>  As an admin you can:</h5>
+            <h6><i class="fa-solid fa-circle-check"></i> Approve doctor registrations</h6>
+            <h6><i class="fa-solid fa-circle-check"></i> Add other admins</h6>
+            <h6><i class="fa-solid fa-circle-check"></i> Remove doctors from the website</h6>
+        </div>
+        <div>
+            <img id="admin-img" th:src="@{/images/admin-page.png}">
+        </div>
+    </div>
     <div id="approval-div">
         <div id="approve-register-card" th:each="user: ${userRepository.findByApprovedFalse()}">
-            <div id="card-names">
+            <div class="block-info">
+                <i class="fa-solid fa-user-doctor"></i>
                 <h3 th:text="${user.firstName}"></h3>
-                <h3 th:text="${user.surname}"></h3>
                 <h3 th:text="${user.lastName}"></h3>
             </div>
-            <div id="card-more-info">
-                <h3 th:text="${user.egn}"></h3>
-                <h3 th:text="${user.address}"></h3>
-                <h3 th:text="${user.email}"></h3>
+                <div class="block-info">
+                    <h3><i class="fa-solid fa-id-card"></i>Id:</h3>
+                    <h3 th:text="${user.egn}"></h3>
+                </div>
+                <div class="block-info">
+                    <h3><i class="fa-solid fa-location-dot"></i></h3>
+                    <h3 th:text="${user.address}"></h3>
+                </div>
+                <div class="block-info">
+                    <h3><i class="fa-solid fa-envelope"></i></h3>
+                    <h3 th:text="${user.email}"></h3>
+                </div>
+            <form class="button-form" th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
+                <button type="submit" id="approve-button">Approve</button>
+            </form>
+            <form class="button-form" th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
+                <button type="submit" id="deny-button">Deny</button>
+            </form>
             </div>
+
             <div>
-                <form th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
-                    <button type="submit" id="approve-button">Approve</button>
-                </form>
-                <form th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
-                    <button type="submit" id="deny-button">Deny</button>
-                </form>
-            </div>
+
+
         </div>
+
+
     </div>
     <a>See all doctors registrations</a>
     <a>See all patient registrations</a>
@@ -52,11 +72,14 @@
 
 
 <section sec:authorize="hasRole('USER')" id="user-section">
-    <div th:unless=" ${user.approved}" id="not-approved-user">
-        <h1 th:text="'Welcome, ' + ${user.firstName} +' ' + ${user.lastName}"></h1>
-        <h2>Your registration is waiting for approval from our administrators!</h2>
-        <h2>You are not able to add patients!</h2>
+    <div id="main-error">
+        <div th:unless=" ${user.approved}" id="not-approved-user">
+            <h1 th:text="'Welcome, ' + ${user.firstName} +' ' + ${user.lastName} +'!'"></h1>
+            <h2>Your registration is waiting for approval from our administrators!</h2>
+            <h2>You are not able to add patients!</h2>
+        </div>
     </div>
+
 
     <div id="add-patient-button-div">
         <a th:if="${user.approved}" id="add-patient-button" th:href="@{/patient/add}"><i class="fa-solid fa-plus"></i>
@@ -103,7 +126,8 @@
                             class="fa-solid fa-user"></i> Open profile</a>
                     <a class="card-button" id="order-test-button" th:href="@{/test/add/{id}(id=${patient.id})}"><i
                             class="fa-solid fa-vial-virus"></i> Order test</a>
-                    <a class="card-button" id="add-appointment-button" th:href="@{/appointment/add/{id}(id = ${patient.id})}"><i
+                    <a class="card-button" id="add-appointment-button"
+                       th:href="@{/appointment/add/{id}(id = ${patient.id})}"><i
                             class="fa-solid fa-plus"></i> Add appointment</a>
                 </div>
             </div>
