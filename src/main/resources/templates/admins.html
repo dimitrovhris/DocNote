@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style-home.css}">
+    <link rel="stylesheet" th:href="@{/css/style-admins.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+<main>
+    <h2>Administrators</h2>
+    <section>
+        <div id="left-side">
+            <div id="admin-card" th:each="admin: ${admins}">
+                <div class="inside-info">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <h3 th:text="${admin.firstName}"></h3>
+                    <h3 th:text="${admin.surname}"></h3>
+                    <h3 th:text="${admin.lastName}"></h3>
+                </div>
+                <div class="inside-info">
+                    <h3 th:text="'Username: ' + ${admin.username}"></h3>
+                    <br>
+                    <h3 th:text="'Id: ' + ${admin.egn}"></h3>
+
+                    <div class="inside-info" id="form">
+                        <form th:method="POST" th:action="@{/manage-website/remove-admin/{id}(id=${admin.id})}">
+                            <button id="enabled-button" th:if="${admin.username != 'admin'}" type="submit">Remove as
+                                admin
+                            </button>
+                            <button id="disabled-button" th:if="${admin.username == 'admin'}" type="submit" disabled>
+                                Remove as admin
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="right-side">
+
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+
+
+</body>
+</html>

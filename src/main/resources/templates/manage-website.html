@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage website</title>
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style-home.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header th:replace="~{fragments/commons::header}"></header>
+    <div id="admin-heading">
+        <div id="manage-heading">
+            <h4>Manage DocNote</h4>
+            <h5> As an admin you can:</h5>
+            <h6><i class="fa-solid fa-circle-check"></i> Approve doctor registrations</h6>
+            <h6><i class="fa-solid fa-circle-check"></i> Add other admins</h6>
+            <h6><i class="fa-solid fa-circle-check"></i> Remove doctors from the website</h6>
+        </div>
+        <a th:href="@{/manage-website/waiting-registrations}">Waiting registrations</a>
+        <a >See all doctors</a>
+        <a th:href="@{/manage-website/admins}">Administrators</a>
+        <div>
+            <img id="admin-img" th:src="@{/images/admin-page.png}">
+        </div>
+    </div>
+    <footer th:replace="~{fragments/commons::footer}"></footer>
+
+</body>
+</html>

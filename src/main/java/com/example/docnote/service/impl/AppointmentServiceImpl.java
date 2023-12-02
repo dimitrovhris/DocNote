@@ -32,4 +32,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         patientRepository.save(patient);
         appointmentRepository.save(appointment);
     }
+
+    @Override
+    public Appointment findById(Long id) {
+        return appointmentRepository.findById(id).get();
+    }
 }

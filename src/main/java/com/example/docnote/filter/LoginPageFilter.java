@@ -17,8 +17,8 @@ public class LoginPageFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (SecurityContextHolder.getContext().getAuthentication() != null
                 && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-                &&(((HttpServletRequest)request).getRequestURI().equals("/")
-                || ((HttpServletRequest)request).getRequestURI().equals("/user/login")
+                &&(
+                ((HttpServletRequest)request).getRequestURI().equals("/user/login")
                 || ((HttpServletRequest)request).getRequestURI().equals("/user/register"))){
             System.out.println("user is authenticated but trying to access login page, redirecting to /");
             ((HttpServletResponse)response).sendRedirect("/home");

@@ -10,24 +10,21 @@
 <body>
 <header>
     <h1><a th:href="@{/}" id="site-heading">DocNote</a></h1>
-    <!--    <i id="doctor-icon" class="fas fa-user-md" style="color: #263754;"></i>-->
-    <!--    <i id="heart-icon" class="fas fa-heartbeat" style="color: #263754;"></i>-->
-    <!--    <i id="pill-icon" class="fas fa-tablets" style="color: #263754;"></i>-->
-    <!--    <i id="hospital-icon" class="fas fa-hospital" style="color: #263754;"></i>-->
-    <!--    <i id="stethoscope-icon" class="fas fa-stethoscope" style="color: #263754;"></i>-->
+    <a  th:href="@{/home}" sec:authorize="hasRole('USER')">
+        <h3 class="nav-button">My patients</h3>
+    </a>
+    <a  th:href="@{/manage-website}" sec:authorize="hasRole('ADMIN')">
+        <h3 class="nav-button">Manage website</h3>
+    </a>
+
+    <a></a>
+
     <nav id="site-navigation">
 
         <ul>
-            <h2 sec:authorize="isAuthenticated()">
-                <span sec:authorize="hasRole('ADMIN')">Admin </span>
-                <span id="header-username" sec:authentication="name"></span>
-            </h2>
-
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/login}">Login</a>
-
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/register}">Register</a>
-
-
+            <h2 sec:authorize="hasRole('ADMIN')">Admin </h2>
             <form id="logout-form" th:method="POST" th:action="@{/user/logout}">
                 <input id="logout-button" sec:authorize="isAuthenticated()" type="submit" value="Logout">
             </form>

@@ -29,4 +29,9 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.save(patient);
         doctorRepository.findFirstByUsername(username).get().getPatients().add(patient);
     }
+
+    @Override
+    public Patient findById(Long id) {
+        return patientRepository.findById(id).get();
+    }
 }

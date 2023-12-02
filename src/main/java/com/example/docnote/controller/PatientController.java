@@ -2,7 +2,6 @@ package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.PatientAddDTO;
 import com.example.docnote.model.entity.Patient;
-import com.example.docnote.repository.PatientRepository;
 import com.example.docnote.service.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
@@ -19,11 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/patient")
 public class PatientController {
     private final PatientService patientService;
-    private final PatientRepository patientRepository;
 
-    public PatientController(PatientService patientService, PatientRepository patientRepository) {
+    public PatientController(PatientService patientService) {
         this.patientService = patientService;
-        this.patientRepository = patientRepository;
     }
 
     @GetMapping("/add")
@@ -49,13 +46,13 @@ public class PatientController {
     }
     @GetMapping("/{id}")
     public String showProfile(@PathVariable Long id, Model model){
-        Patient patientProfile = patientRepository.findById(id).get();
+        Patient patientProfile = patientService.findById(id);
         model.addAttribute("patientProfile", patientProfile);
         return "patient";
     }
     @GetMapping("/{id}-successfully-added-test")
     public String showProfileWithTestMessage(@PathVariable Long id, Model model){
-        Patient patientProfile = patientRepository.findById(id).get();
+        Patient patientProfile = patientService.findById(id);
         model.addAttribute("patientProfile", patientProfile);
         String testMessage = "Successfully added test!";
         model.addAttribute("testMessage", testMessage);

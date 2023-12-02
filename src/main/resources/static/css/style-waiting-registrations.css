@@ -1,0 +1,10 @@
+main{
+    margin: 50px 50px 50px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#approve-register-card{
+    text-align: center;
+    padding: 0;
+}

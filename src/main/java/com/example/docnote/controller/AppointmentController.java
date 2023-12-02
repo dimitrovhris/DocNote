@@ -3,9 +3,8 @@ package com.example.docnote.controller;
 import com.example.docnote.model.DTO.AppointmentAddDTO;
 import com.example.docnote.model.entity.Appointment;
 import com.example.docnote.model.entity.Patient;
-import com.example.docnote.repository.AppointmentRepository;
-import com.example.docnote.repository.PatientRepository;
 import com.example.docnote.service.AppointmentService;
+import com.example.docnote.service.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/appointment")
 public class AppointmentController {
     private final AppointmentService appointmentService;
-    private final PatientRepository patientRepository;
-    private final AppointmentRepository appointmentRepository;
+    private final PatientService patientService;
 
-    public AppointmentController(AppointmentService appointmentService, PatientRepository patientRepository, AppointmentRepository appointmentRepository) {
+    public AppointmentController(AppointmentService appointmentService, PatientService patientService) {
         this.appointmentService = appointmentService;
-        this.patientRepository = patientRepository;
-        this.appointmentRepository = appointmentRepository;
+        this.patientService = patientService;
     }
 
     @GetMapping("/add/{id}")
@@ -37,7 +34,7 @@ public class AppointmentController {
         if(!model.containsAttribute("appointmentService")){
             model.addAttribute("appointmentService", appointmentService);
         }
-        model.addAttribute("patient", patientRepository.findById(id).get());
+        model.addAttribute("patient", patientService.findById(id));
         return "add-appointment";
     }
     @PostMapping("/add/{id}")
@@ -48,7 +45,7 @@ public class AppointmentController {
             return "redirect:/appointment/add/{id}";
         }
         appointmentService.add(appointmentAddDTO, id);
-        Patient patientProfile = patientRepository.findById(id).get();
+        Patient patientProfile = patientService.findById(id);
         model.addAttribute("patient", patientProfile);
         if(appointmentAddDTO.isWorker()){
             return "redirect:/document/add/{id}";
@@ -57,7 +54,7 @@ public class AppointmentController {
     }
     @GetMapping("/{id}")
     public String show(Model model, @PathVariable Long id){
-        Appointment appointment = appointmentRepository.findById(id).get();
+        Appointment appointment = appointmentService.findById(id);
         model.addAttribute("appointment", appointment);
         return "appointment-info";
     }

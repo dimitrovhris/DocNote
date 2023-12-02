@@ -2,7 +2,6 @@ package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.UserRegisterDTO;
 import com.example.docnote.model.entity.UserEntity;
-import com.example.docnote.repository.UserRepository;
 import com.example.docnote.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -18,12 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
-
     }
 
     @GetMapping("/register")
@@ -67,17 +63,14 @@ public class UserController {
     }
     @PostMapping("/approve/{id}")
     public String approve(@PathVariable Long id, Model model){
-        UserEntity user = userRepository.findById(id).get();
-        user.setApproved(true);
-        userRepository.save(user);
-
-        return "redirect:/home";
+        userService.approve(id);
+        return "redirect:/manage-website/waiting-registrations";
     }
     @PostMapping("/deny/{id}")
     public String deny(@PathVariable Long id){
-        UserEntity user = userRepository.findById(id).get();
+        UserEntity user = userService.findById(id);
         userService.remove(user);
-        return "redirect:/home";
+        return "redirect:/manage-website/waiting-registrations";
     }
 
 }

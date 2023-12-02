@@ -1,7 +1,7 @@
 package com.example.docnote.controller;
 
 import com.example.docnote.model.entity.UserEntity;
-import com.example.docnote.repository.UserRepository;
+import com.example.docnote.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    private final UserRepository userRepository;
-    public HomeController( UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private final UserService userService;
+    public HomeController( UserService userService) {
 
+        this.userService = userService;
     }
-
 
     @GetMapping("/")
     public String index(){
@@ -23,10 +22,8 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model, Authentication authentication){
-        model.addAttribute("userRepository", userRepository);
-        UserEntity user = userRepository.findFirstByUsername(authentication.getName()).get();
+        UserEntity user = userService.findFirstByUsername(authentication.getName());
         model.addAttribute("user", user);
-
         return "home";
     }
 

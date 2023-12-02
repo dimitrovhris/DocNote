@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "treatments")
+@Table(name = "documents")
 public class SicknessLeaveDocument extends BaseEntity{
 
 

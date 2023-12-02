@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style-error.css}">
+    <title>Document</title>
+</head>
+<body>
+<header th:replace="~{fragments/commons::header}"></header>
+<div id="super-div">
+    <img id="main-img" th:src="@{/images/error.png}" alt="Doctor image">
+    <div id="main-div">
+        <div id="headers-div">
+            <h2></h2>
+            <h2>Diagnosis 403: Page not accessible!</h2>
+            <h3>Your account is not authorized to make this request.</h3>
+        </div>
+        <br>
+        <a id="home-page-link" th:href="@{/home}">Go back to Home page</a>
+    </div>
+
+</div>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

@@ -2,7 +2,7 @@ package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.DocumentAddDTO;
 import com.example.docnote.model.entity.Patient;
-import com.example.docnote.repository.PatientRepository;
+import com.example.docnote.service.PatientService;
 import com.example.docnote.service.SicknessLeaveDocumentService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -17,13 +17,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/document")
 public class DocumentController {
-    private final PatientRepository patientRepository;
+    private final PatientService patientService;
     private final SicknessLeaveDocumentService documentService;
 
-    public DocumentController(PatientRepository patientRepository, SicknessLeaveDocumentService documentService) {
-        this.patientRepository = patientRepository;
+    public DocumentController(PatientService patientService, SicknessLeaveDocumentService documentService) {
+        this.patientService = patientService;
         this.documentService = documentService;
-
     }
 
     @GetMapping("/add/{id}")
@@ -31,7 +30,7 @@ public class DocumentController {
         if(!model.containsAttribute("documentAddDTO")){
             model.addAttribute("documentAddDTO", new DocumentAddDTO());
         }
-        Patient patient = patientRepository.findById(id).get();
+        Patient patient = patientService.findById(id);
         model.addAttribute("patient", patient);
         return "add-document";
     }

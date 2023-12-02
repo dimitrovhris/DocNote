@@ -159,3 +159,9 @@ h5{
     padding-left: 12vw;
     padding-right: 12vw;
 }
+.admin-button{
+    color: white;
+    background-color: black;
+    font-size: 10px;
+    padding: 10px 15px 10px;
+}

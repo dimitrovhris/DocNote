@@ -24,6 +24,7 @@ public class AdminInit implements CommandLineRunner {
         if(conditions == 0){
             UserEntity admin = new UserEntity("Admin", "Adminov", "Adminov", "admin", "0000000000", "admin@admin.bg", "Bulgaria, Sofia", "$2a$10$tLvO0mvPt1tTJ5kGLKp90OTEWfCG1CR.HnSbNec6txQx5/VmMg9Ii", true, new ArrayList<>(), new ArrayList<>());
             admin.getRoles().add(new UserRole(UserRoleEnum.ADMIN));
+            admin.getRoles().add(new UserRole(UserRoleEnum.USER));
             userRepository.save(admin);
         }
 

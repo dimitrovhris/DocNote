@@ -27,7 +27,8 @@ public class SecurityConfiguration {
                                 //All static resources which are situated in js, images, css are available for anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 //Allow anyone to see the home page, register page and login page
-                                .requestMatchers( "/","/user/register", "/user/login", "/user/login-error").permitAll()
+                                .requestMatchers( "/", "/index", "/user/register", "/user/login", "/user/login-error").permitAll()
+                                .requestMatchers("/manage-website").hasRole("ADMIN")
 
                                 //All other requests are authenticated
                                 .anyRequest().authenticated()
@@ -40,7 +41,7 @@ public class SecurityConfiguration {
                                     // The names of the input fields (in our case in login.html)
                                     .usernameParameter("emailOrUsername")
                                     .passwordParameter("password")
-                                    .defaultSuccessUrl("/home")
+                                    .defaultSuccessUrl("/")
                                     .failureUrl("/user/login-error");
                         }
                 ).logout(

@@ -9,6 +9,9 @@ import com.example.docnote.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
@@ -64,6 +67,49 @@ public class UserServiceImpl implements UserService {
     @Override
     public void remove(UserEntity user) {
         userRepository.delete(user);
+    }
+
+    @Override
+    public List<UserEntity> findAdmins() {
+        List<UserEntity> adminList = new ArrayList<>();
+        List<UserEntity> users = userRepository.findAll();
+        for (UserEntity user : users) {
+            List<UserRole> currentRoles = user.getRoles();
+            for(UserRole userRole: currentRoles){
+                if (userRole.getRole().equals(UserRoleEnum.ADMIN)){
+                    adminList.add(user);
+                }
+            }
+        }
+        return adminList;
+    }
+
+    @Override
+    public void removeAsAdmin(Long userId) {
+        UserEntity adminToRemove = userRepository.findById(userId).get();
+        userRepository.delete(adminToRemove);
+    }
+
+    @Override
+    public List<UserEntity> findNotApproved() {
+        return userRepository.findByApprovedFalse();
+    }
+
+    @Override
+    public UserEntity findFirstByUsername(String username) {
+        return userRepository.findFirstByUsername(username).get();
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
+    public void approve(Long id) {
+        UserEntity user = userRepository.findById(id).get();
+        user.setApproved(true);
+        userRepository.save(user);
     }
 
 }

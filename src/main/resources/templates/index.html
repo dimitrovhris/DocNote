@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" th:href="@{/css/style-index.css}">
       <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <title>DocHero</title>
@@ -16,8 +17,13 @@
     <div id="super-div">
         <div id="main-div">
             <div id="headers-div">
-            <h1>Welcome to DocNote!</h1>
-            <h3>Make your daily work easier!</h3>
+            <h1 sec:authorize="!isAuthenticated()">Welcome to DocNote!</h1>
+            <h3 sec:authorize="!isAuthenticated()">Make your daily work easier!</h3>
+                <h4 sec:authorize="isAuthenticated()">We are glad to see you, Hero in white!</h4>
+                <h5 sec:authorize="isAuthenticated()" >As a registered doctor you can:</h5>
+                <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Add patients and information about them</h6>
+                <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Issue sick leave documents</h6>
+                <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Order tests for your patients</h6>
         </div>
         </div>
         <img id="main-img" th:src="@{/images/main.png}" alt="Doctor image">

@@ -1,0 +1,31 @@
+#admin-card{
+    background-color: white;
+    border-radius: 15px;
+}
+.inside-info > *{
+    display: inline-block;
+}
+section{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 17vw;
+}
+img{
+    width: 55%;
+}
+#form{
+    text-align: center;
+}
+button{
+    color: white;
+    padding: 10px 15px 10px;
+    margin: auto;
+}
+#enabled-button{
+    background-color: #e00000;
+}
+
+#disabled-button{
+    background-color: #ff4b4b;
+}
