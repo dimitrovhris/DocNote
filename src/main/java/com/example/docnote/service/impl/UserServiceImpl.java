@@ -38,13 +38,13 @@ public class UserServiceImpl implements UserService {
         user.setApproved(false);
         user.getRoles().add(new UserRole(UserRoleEnum.USER));
         userRepository.save(user);
-        
+
     }
 
     @Override
     public boolean confirmPassword(UserRegisterDTO userRegisterDTO) {
-        if(userRegisterDTO.getPassword()!= null){
-        return userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword());
+        if (userRegisterDTO.getPassword() != null) {
+            return userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword());
         }
         return false;
     }
@@ -65,7 +65,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void remove(UserEntity user) {
+    public void remove(Long id) {
+        UserEntity user = userRepository.findById(id).get();
         userRepository.delete(user);
     }
 
@@ -75,8 +76,8 @@ public class UserServiceImpl implements UserService {
         List<UserEntity> users = userRepository.findAll();
         for (UserEntity user : users) {
             List<UserRole> currentRoles = user.getRoles();
-            for(UserRole userRole: currentRoles){
-                if (userRole.getRole().equals(UserRoleEnum.ADMIN)){
+            for (UserRole userRole : currentRoles) {
+                if (userRole.getRole().equals(UserRoleEnum.ADMIN)) {
                     adminList.add(user);
                 }
             }
@@ -87,7 +88,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeAsAdmin(Long userId) {
         UserEntity adminToRemove = userRepository.findById(userId).get();
-        userRepository.delete(adminToRemove);
+        if (userId != 1) {
+            adminToRemove.getRoles().remove(1);
+        }
+        userRepository.save(adminToRemove);
     }
 
     @Override
@@ -112,4 +116,22 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public List<UserEntity> findNotAdmins() {
+        List<UserEntity> notAdmins = new ArrayList<>();
+        for (UserEntity user : userRepository.findAll()) {
+            List<UserRole> currentRoles = user.getRoles();
+            if (currentRoles.size() == 1 && user.isApproved()) {
+                notAdmins.add(user);
+            }
+        }
+        return notAdmins;
+    }
+
+    @Override
+    public void addAdmin(Long id) {
+        UserEntity user = userRepository.findById(id).get();
+        user.getRoles().add(new UserRole(UserRoleEnum.ADMIN));
+        userRepository.save(user);
+    }
 }

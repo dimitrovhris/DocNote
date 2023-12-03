@@ -1,7 +1,6 @@
 package com.example.docnote.controller;
 
 import com.example.docnote.model.DTO.UserRegisterDTO;
-import com.example.docnote.model.entity.UserEntity;
 import com.example.docnote.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -68,8 +67,7 @@ public class UserController {
     }
     @PostMapping("/deny/{id}")
     public String deny(@PathVariable Long id){
-        UserEntity user = userService.findById(id);
-        userService.remove(user);
+        userService.remove(id);
         return "redirect:/manage-website/waiting-registrations";
     }
 

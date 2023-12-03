@@ -18,7 +18,7 @@
 <main>
     <h2>Administrators</h2>
     <section>
-        <div id="left-side">
+
             <div id="admin-card" th:each="admin: ${admins}">
                 <div class="inside-info">
                     <i class="fa-solid fa-user-gear"></i>
@@ -44,10 +44,6 @@
                 </div>
 
             </div>
-        </div>
-        <div id="right-side">
-
-        </div>
     </section>
 </main>
 <footer th:replace="~{fragments/commons::footer}"></footer>

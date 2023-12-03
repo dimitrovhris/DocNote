@@ -17,20 +17,21 @@
     <div id="info" th:object="${appointment}">
         <h2>Patient: </h2>
         <h2 th:text="${appointment.patient.firstName + ' ' + appointment.patient.surname + ' ' + appointment.patient.lastName}"></h2>
-        <h2>Date:</h2>
-        <h2>Date: </h2>
-        <h2>Hour:</h2>
+        <h2>Visit Date:</h2>
+        <h2 th:text="${#temporals.format(appointment.visitDate, 'dd.MM.yyyy')}"></h2>
         <h2>Hour: </h2>
+        <h2 th:text="${#temporals.format(appointment.hour, 'HH:mm')}"></h2>
         <h2>Symptoms: </h2>
-        <h2>Symptoms: </h2>
+        <h2 th:text="${appointment.symptoms}"></h2>
         <h2>Diagnosis:</h2>
-        <h2>Diagnosis:</h2>
+        <h2 th:text="${appointment.diagnosis}"></h2>
         <h2>Treatment type:</h2>
-        <h2>Treatment type:</h2>
+        <h2 th:text="${appointment.treatmentType.name()}">Treatment type:</h2>
         <h2>Prescription: </h2>
-        <h2>Prescription</h2>
-        <h2>Sickness leave document</h2>
-        <h2>Sickness leave document</h2>
+        <h2 th:text="${appointment.prescription}">Prescription</h2>
+        <h2>Sickness leave document:</h2>
+        <h2 th:if="${appointment.sicknessLeaveDocument != null}" th:text="Yes"></h2>
+        <h2 th:if="${appointment.sicknessLeaveDocument == null}" th:text="No"></h2>
 
     </div>
     <div id="info2">

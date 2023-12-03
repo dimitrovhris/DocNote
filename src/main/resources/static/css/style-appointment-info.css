@@ -8,9 +8,10 @@ main{
 }
 #info{
     display: grid;
-    background-color: aqua;
+    background-color: #52bad7;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 50px;
+    border-radius: 15px;
 }
 img{
     width: 50%;

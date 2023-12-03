@@ -29,7 +29,6 @@ public class AdminController {
         UserEntity user = userService.findFirstByUsername(authentication.getName());
         model.addAttribute("user", user);
         model.addAttribute("notApprovedUsers", userService.findNotApproved());
-
         return "waiting-registrations";
     }
 
@@ -41,8 +40,35 @@ public class AdminController {
 
     @PostMapping("/remove-admin/{id}")
     public String removeAdmin(@PathVariable Long id) {
-        if (id != 1) userService.removeAsAdmin(id);
+        userService.removeAsAdmin(id);
         return "redirect:/manage-website/admins";
+    }
+    @GetMapping("/users")
+    public String users(Model model){
+        model.addAttribute("notAdmins", userService.findNotAdmins());
+        return "users";
+    }
+
+    @PostMapping("/add-admin/{id}")
+    public String addAdmin(@PathVariable Long id){
+        userService.addAdmin(id);
+        return "redirect:/manage-website/users-successfully-added-admin";
+    }
+    @GetMapping("/users-successfully-added-admin")
+    public String usersAfterAddingAdmin(Model model){
+        model.addAttribute("notAdmins", userService.findNotAdmins());
+        model.addAttribute("addedAdmin", true);
+        return "users";
+    }
+    @PostMapping("/remove-user/{id}")
+    public String removeUser(@PathVariable Long id){
+        userService.remove(id);
+        return "redirect:/manage-website/users-successfully-removed-user";
+    }
+    @GetMapping("/users-successfully-removed-user")
+    public String usersAfterRemoving(Model model){
+        model.addAttribute("removedUser", true);
+        return "users";
     }
 
 }
