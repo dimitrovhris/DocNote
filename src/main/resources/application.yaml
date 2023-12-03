@@ -18,8 +18,8 @@ spring:
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${db_password}
-    username: ${db_username}
+    password: root
+    username: root
     url: jdbc:mysql://localhost:3306/docnote?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
 logging:
   level:
