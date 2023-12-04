@@ -42,6 +42,21 @@ public class UserRegisterDTO {
     @NotEmpty
     private String confirmPassword;
 
+    public UserRegisterDTO(String firstName, String surname, String lastName, String username, String egn, String email, String address, String password, String confirmPassword) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.lastName = lastName;
+        this.username = username;
+        this.egn = egn;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public UserRegisterDTO() {
+    }
+
     public String getFirstName() {
         return firstName;
     }

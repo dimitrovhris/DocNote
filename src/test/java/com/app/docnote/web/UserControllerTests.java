@@ -1,12 +1,14 @@
 package com.app.docnote.web;
 
+import com.app.docnote.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -16,31 +18,53 @@ public class UserControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
+
+    private final UserService userService;
+
+    @Autowired
+    public UserControllerTests(UserService userService) {
+        this.userService = userService;
+    }
+
     @Test
-    void testGetLoginPage() throws Exception{
+    void testLoginPage() throws Exception {
         mockMvc
-                .perform(MockMvcRequestBuilders
-                        .get("/user/login"))
+                .perform(get("/user/login"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"));
-    }
-    @Test
-    void testGetLoginPageError() throws Exception{
         mockMvc
-                .perform(MockMvcRequestBuilders
-                        .get("/user/login-error"))
+                .perform(get("/user/login-error"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"))
                 .andExpect(model().attributeExists("invalidLogin"));
     }
+
     @Test
-    void testGetRegisterPage() throws Exception{
+    void testRegisterPage() throws Exception {
         mockMvc
-                .perform(MockMvcRequestBuilders
-                        .get("/user/register"))
+                .perform(get("/user/register"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("register"))
-                .andExpect(model().attributeExists("doctorRegisterDTO"))
-                .andExpect(model().attributeExists("doctorService"));
+                .andExpect(view().name("register"));
+
+        mockMvc
+                .perform(post("/user/register")
+                        .param("firstName", "Hristiyan")
+                        .param("surname", "Plamenov")
+                        .param("lastName", "Dimitrov")
+                        .param("username", "wrongUsername")
+                        .param("egn", "1212121213")
+                        .param("email", "testEmail@mail.bg")
+                        .param("address", "Stara Zagora Bulgaria")
+                        .param("password", "abc1234")
+                        .param("confirmPassword", "abc1234"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/user/login"));
+        userService.removeByUsername("wrongUsername");
+
+        mockMvc.perform(post("/user/register"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/user/register"));
     }
-}
+
+    }
+

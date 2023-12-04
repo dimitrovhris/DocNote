@@ -49,7 +49,7 @@
                         should be at least 5 symbols and unique</small>
                     <br>
                     <label for="phone">Phone:</label>
-                    <input class="register-input" type="text" th:name="phone" th:field="*{egn}" id="phone"
+                    <input class="register-input" type="text" th:name="egn" th:field="*{egn}" id="phone"
                            placeholder="Enter your phone number">
                     <br>
                     <small th:if="${#fields.hasErrors('egn') || doctorService.containsEgn(doctorRegisterDTO)}">Phone

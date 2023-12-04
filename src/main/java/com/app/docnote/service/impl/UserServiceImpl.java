@@ -1,11 +1,11 @@
 package com.app.docnote.service.impl;
 
-import com.app.docnote.service.UserService;
 import com.app.docnote.model.DTO.UserRegisterDTO;
 import com.app.docnote.model.entity.UserEntity;
 import com.app.docnote.model.entity.UserRole;
 import com.app.docnote.model.enums.UserRoleEnum;
 import com.app.docnote.repository.UserRepository;
+import com.app.docnote.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -88,7 +88,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeAsAdmin(Long userId) {
         UserEntity adminToRemove = userRepository.findById(userId).get();
-        if (userId != 1) {
+        long mainAdminId = findFirstByUsername("admin").getId();
+        if (userId != mainAdminId) {
             adminToRemove.getRoles().remove(1);
         }
         userRepository.save(adminToRemove);
@@ -133,5 +134,11 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userRepository.findById(id).get();
         user.getRoles().add(new UserRole(UserRoleEnum.ADMIN));
         userRepository.save(user);
+    }
+
+    @Override
+    public void removeByUsername(String username) {
+        UserEntity user = userRepository.findFirstByUsername(username).get();
+        userRepository.delete(user);
     }
 }

@@ -21,4 +21,5 @@ public interface UserService {
     void approve(Long id);
     List<UserEntity> findNotAdmins();
     void addAdmin(Long id);
+    void removeByUsername(String username);
 }
