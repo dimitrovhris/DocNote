@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @Component
 public class AdminInit implements CommandLineRunner {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public AdminInit(UserRepository userRepository) {
         this.userRepository = userRepository;

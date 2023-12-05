@@ -1,10 +1,14 @@
 package com.app.docnote.util;
 
 
+import com.app.docnote.model.DTO.PatientAddDTO;
 import com.app.docnote.model.DTO.UserRegisterDTO;
 import com.app.docnote.repository.*;
 import com.app.docnote.service.UserService;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class TestDataService {
@@ -32,6 +36,7 @@ public class TestDataService {
 
         userService.register(userRegisterDto);
         userService.addAdmin(getIdByUsername("goshoWrong"));
+
     }
     public void tearDownDB(){
         userRepository.deleteAll();

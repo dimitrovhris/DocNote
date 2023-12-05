@@ -97,4 +97,18 @@ public class PatientAddDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public PatientAddDTO(String firstName, String surname, String lastName, String egn, LocalDate birthday, int height, int weight, String address) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.lastName = lastName;
+        this.egn = egn;
+        this.birthday = birthday;
+        this.height = height;
+        this.weight = weight;
+        this.address = address;
+    }
+
+    public PatientAddDTO() {
+    }
 }

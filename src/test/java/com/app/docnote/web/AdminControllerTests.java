@@ -5,10 +5,7 @@ import com.app.docnote.model.entity.UserRole;
 import com.app.docnote.model.enums.UserRoleEnum;
 import com.app.docnote.repository.UserRepository;
 import com.app.docnote.util.TestDataService;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,24 +23,21 @@ public class AdminControllerTests {
     private MockMvc mockMvc;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private TestDataService testDataService;
 
     Long userId;
-    @BeforeAll
+    @BeforeEach
     void setUp(){
         testDataService.initUsers();
         userId = testDataService.getIdByUsername("goshoWrong");
     }
-    @AfterAll
+    @AfterEach
     void tearDown(){
         testDataService.tearDownDB();
     }
 
     @Test
-    @WithMockUser(username = "admin", authorities = {"ROLE_ADMIN","ROLE_USER"})
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_ADMIN","ROLE_USER"})
     void testMangeWebsitePage() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/manage-website"))
@@ -51,7 +45,7 @@ public class AdminControllerTests {
                 .andExpect(view().name("manage-website"));
     }
     @Test
-    @WithMockUser(username = "admin", authorities = {"ROLE_USER", "ROLE_ADMIN"})
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_USER", "ROLE_ADMIN"})
     void testWaitingRegistrationsPage() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/manage-website/waiting-registrations"))
@@ -60,7 +54,7 @@ public class AdminControllerTests {
                 .andExpect(model().attributeExists("user", "notApprovedUsers"));
     }
     @Test
-    @WithMockUser(username = "admin", authorities = {"ROLE_USER", "ROLE_ADMIN"})
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_USER", "ROLE_ADMIN"})
     void testAdminsPage() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/manage-website/admins"))
@@ -69,7 +63,7 @@ public class AdminControllerTests {
                 .andExpect(model().attributeExists("admins"));
     }
     @Test
-    @WithMockUser(username = "admin", authorities = {"ROLE_USER", "ROLE_ADMIN"})
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_USER", "ROLE_ADMIN"})
     void testSeeUsersPage() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/manage-website/users"))
@@ -90,7 +84,7 @@ public class AdminControllerTests {
                 .andExpect(model().attributeExists("removedUser"));
     }
     @Test
-    @WithMockUser(username = "admin", authorities = {"ROLE_ADMIN", "ROLE_USER"})
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_ADMIN", "ROLE_USER"})
     void testRemoveAdmin() throws Exception {
 
         mockMvc
@@ -98,19 +92,23 @@ public class AdminControllerTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/manage-website/admins"));
     }
+    @Test
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_ADMIN", "ROLE_USER"})
+    void testAddAdmin() throws Exception {
 
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/manage-website/add-admin/" + userId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/manage-website/users-successfully-added-admin"));
+    }
+    @Test
+    @WithMockUser(username = "goshoWrong", authorities = {"ROLE_ADMIN", "ROLE_USER"})
+    void testRemoveUser() throws Exception {
 
-
-
-
-
-    private static UserEntity createTestUser(){
-        UserEntity user = new UserEntity(
-                "firstName", "surname", "lastName", "wrongUsername",
-                "1234567890", "wrong@email.com", "Nowhere nowhere", "123456", false);
-        user.getRoles().add(new UserRole(UserRoleEnum.USER));
-        user.getRoles().add(new UserRole(UserRoleEnum.ADMIN));
-        return user;
+        mockMvc
+                .perform(MockMvcRequestBuilders.post("/manage-website/remove-user/" + userId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/manage-website/users-successfully-removed-user"));
     }
 
 }
