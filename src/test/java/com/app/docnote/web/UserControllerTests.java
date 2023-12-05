@@ -1,7 +1,11 @@
 package com.app.docnote.web;
 
 import com.app.docnote.service.UserService;
+import com.app.docnote.util.TestDataService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,16 +18,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
 
     private final UserService userService;
+    @Autowired
+    private TestDataService testDataService;
 
     @Autowired
     public UserControllerTests(UserService userService) {
         this.userService = userService;
+    }
+
+    @BeforeEach
+    void setUp(){
+        testDataService.initUsers();
+    }
+    @AfterEach
+    void tearDown(){
+        testDataService.tearDownDB();
     }
 
     @Test
@@ -66,5 +82,6 @@ public class UserControllerTests {
                 .andExpect(view().name("redirect:/user/register"));
     }
 
-    }
+
+}
 
