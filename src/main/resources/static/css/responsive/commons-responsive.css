@@ -1,0 +1,10 @@
+@media screen and(max-width: 510px){
+    header{
+        padding-left: 3px;
+
+    }
+    #site-navigation > ul{
+        margin-top: 0;
+        padding-left: 0;
+    }
+}

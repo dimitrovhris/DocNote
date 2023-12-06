@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" th:href="@{/css/style-index.css}">
+    <link rel="stylesheet" th:href="@{/css/responsive/index-responsive.css}">
       <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/responsive/commons-responsive.css}">
     <title>DocHero</title>
 </head>
 <body>
@@ -18,7 +20,7 @@
         <div id="main-div">
             <div id="headers-div">
             <h1 sec:authorize="!isAuthenticated()">Welcome to DocNote!</h1>
-            <h3 sec:authorize="!isAuthenticated()">Make your daily work easier!</h3>
+            <h4 sec:authorize="!isAuthenticated()">In gravida fringilla diam. Quisque id lorem orci. Donec sed ultrices mi. Phasellus nec justo eu lacus pellentesque facilisis. Suspendisse ac tincidunt elit, vitae finibus dolor. Morbi lobortis tellus quis eros pharetra, et convallis erat ultrices.!</h4>
                 <h4 sec:authorize="isAuthenticated()">We are glad to see you, Hero in white!</h4>
                 <h5 sec:authorize="isAuthenticated()" >As a registered doctor you can:</h5>
                 <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Add patients and information about them</h6>

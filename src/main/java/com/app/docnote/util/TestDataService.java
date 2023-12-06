@@ -28,7 +28,6 @@ public class TestDataService {
         this.patientRepository = patientRepository;
         this.appointmentRepository = appointmentRepository;
         this.sicknessLeaveDocumentRepository = sicknessLeaveDocumentRepository;
-
         this.testRepository = testRepository;
     }
     public void initUsers(){

@@ -37,10 +37,7 @@ header{
     font-weight: 700;
     
 }
-#site-navigation > ul{
-    margin-top: 25px;
 
-}
 header > i{
     opacity: 0.1;
     margin-top: 9px;
@@ -58,7 +55,7 @@ header > i{
     padding: 5%;
     left: 10%;
     border-radius: 20px;
-    padding-top: 10%;
+    padding-top: 15%;
     font-size: 22px;
 }
 
@@ -188,5 +185,6 @@ ul{
 a{
     text-decoration: none;
 }
+
 
 

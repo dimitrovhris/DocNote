@@ -1,0 +1,18 @@
+@media screen and (max-width: 1300px){
+
+    #super-div{
+        display: block;
+        text-align: center;
+    }
+    #main-img{
+        width: 45%;
+    }
+    #main-div{
+        padding-top: 6%;
+    }
+}
+@media screen and (max-width: 940px){
+    #main-img{
+        width: 55%;
+    }
+}
