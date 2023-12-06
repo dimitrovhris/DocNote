@@ -1,4 +1,4 @@
-@media screen and (max-width: 1300px){
+@media (max-width: 1300px){
 
     #super-div{
         display: block;
@@ -11,8 +11,17 @@
         padding-top: 6%;
     }
 }
-@media screen and (max-width: 940px){
+@media (max-width: 940px){
     #main-img{
         width: 55%;
+    }
+}
+@media (max-width: 420px){
+    #main-div{
+        font-size: unset;
+        padding: 0;
+    }
+    #super-div{
+        margin: 0;
     }
 }

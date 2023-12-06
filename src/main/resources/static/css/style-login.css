@@ -13,6 +13,7 @@
 }
 #main-register-div{
     display: inline-block;
+    height: 380px;
     background-color: rgb(224, 233, 255);
     border-radius: 15px;
 }

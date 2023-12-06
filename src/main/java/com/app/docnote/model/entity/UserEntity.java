@@ -42,6 +42,10 @@ public class UserEntity extends BaseEntity{
     @NotNull
     private boolean approved;
 
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Patient> patients;
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(
             name="users_roles",
@@ -113,8 +117,6 @@ public class UserEntity extends BaseEntity{
         this.password = password;
     }
 
-    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
-    private List<Patient> patients;
 
 
     public List<Patient> getPatients() {

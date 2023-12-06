@@ -1,0 +1,14 @@
+@media (max-width: 1000px) {
+    img {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    #main-register-div > form {
+        padding: 30px 30px 0;
+    }
+    #main-register-div{
+        height: 320px;
+    }
+}

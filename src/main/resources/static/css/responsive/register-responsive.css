@@ -1,0 +1,8 @@
+@media (max-width: 840px) {
+    #first-major-div{
+        display: block;
+    }
+    #first-major-div > div{
+        margin-bottom: 10px;
+    }
+}

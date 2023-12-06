@@ -61,11 +61,10 @@
 }
 #first-major-div{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 #second-major-div{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: block;
     gap: 20px;
     margin-top: 20px;
 }
@@ -77,5 +76,12 @@
 }
 #second-register-img{
     height: 25vh;
-
+}
+#second-major-div > *{
+    margin-top: 5px;
+}
+small{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: darkred;
 }
