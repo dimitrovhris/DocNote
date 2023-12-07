@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 //Allow anyone to see the home page, register page and login page
                                 .requestMatchers( "/", "/index", "/user/register", "/user/login", "/user/login-error").permitAll()
-                                .requestMatchers("/manage-website").hasRole("ADMIN")
+                                .requestMatchers("/manage-website", "/manage-website/admins", "/manage-website/waiting-registrations", "manage-website/doctors").hasRole("ADMIN")
 
                                 //All other requests are authenticated
                                 .anyRequest().authenticated()

@@ -6,3 +6,7 @@ form, form > *{
     grid-template-columns: 2fr 2fr;
     gap: 40px;
 }
+#super-register-div{
+    display: flex;
+    justify-content: space-around;
+}
