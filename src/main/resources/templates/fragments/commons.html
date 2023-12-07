@@ -25,7 +25,6 @@
         <ul>
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/login}">Login</a>
             <a sec:authorize="!isAuthenticated()" th:href="@{/user/register}">Register</a>
-            <h2 sec:authorize="hasRole('ADMIN')">Admin </h2>
             <form id="logout-form" th:method="POST" th:action="@{/user/logout}">
                 <input id="logout-button" sec:authorize="isAuthenticated()" type="submit" value="Logout">
             </form>
