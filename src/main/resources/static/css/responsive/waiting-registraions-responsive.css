@@ -1,0 +1,15 @@
+@media (max-width: 1611px) {
+    #approve-register-card {
+        grid-template-columns: 1fr;
+    }
+    .block-info > h3{
+        display: unset;
+        margin-top: 5px;
+    }
+    .block-info{
+        margin-top: 15px;
+    }
+    i{
+        display: block;
+    }
+}
