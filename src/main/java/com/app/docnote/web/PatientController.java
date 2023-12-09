@@ -1,8 +1,8 @@
 package com.app.docnote.web;
 
+import com.app.docnote.model.DTO.PatientAddDTO;
 import com.app.docnote.model.entity.Patient;
 import com.app.docnote.service.PatientService;
-import com.app.docnote.model.DTO.PatientAddDTO;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -44,12 +44,14 @@ public class PatientController {
         patientService.addPatient(patientAddDTO, username);
         return "redirect:/home";
     }
+
     @GetMapping("/{id}")
     public String showProfile(@PathVariable Long id, Model model){
         Patient patientProfile = patientService.findById(id);
         model.addAttribute("patientProfile", patientProfile);
         return "patient";
     }
+
     @GetMapping("/{id}-successfully-added-test")
     public String showProfileWithTestMessage(@PathVariable Long id, Model model){
         Patient patientProfile = patientService.findById(id);

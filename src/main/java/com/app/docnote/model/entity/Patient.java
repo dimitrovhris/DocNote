@@ -1,5 +1,6 @@
 package com.app.docnote.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -41,17 +42,39 @@ public class Patient extends BaseEntity{
     @NotNull
     private String address;
 
+    @JsonIgnore
     @ManyToOne
     private UserEntity doctor;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
+    @JsonIgnore
     @OneToMany
     private List<SicknessLeaveDocument> sicknessLeaveDocuments;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private List<Test> tests;
+
+    public Patient(String firstName, String surname, String lastName, String egn, LocalDate birthday, int height, int weight, String address, UserEntity doctor, List<Appointment> appointments, List<SicknessLeaveDocument> sicknessLeaveDocuments, List<Test> tests) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.lastName = lastName;
+        this.egn = egn;
+        this.birthday = birthday;
+        this.height = height;
+        this.weight = weight;
+        this.address = address;
+        this.doctor = doctor;
+        this.appointments = appointments;
+        this.sicknessLeaveDocuments = sicknessLeaveDocuments;
+        this.tests = tests;
+    }
+
+    public Patient() {
+    }
 
     public String getFirstName() {
         return firstName;

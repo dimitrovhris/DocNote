@@ -22,4 +22,8 @@ public interface UserService {
     List<UserEntity> findNotAdmins();
     void addAdmin(Long id);
     void removeByUsername(String username);
+
+    boolean isAuthenticated();
+
+    boolean isUserAuthorized(String requestURI);
 }

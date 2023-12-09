@@ -6,6 +6,11 @@ import com.app.docnote.model.entity.UserRole;
 import com.app.docnote.model.enums.UserRoleEnum;
 import com.app.docnote.repository.UserRepository;
 import com.app.docnote.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +21,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+
+    @Autowired
+    private HttpServletRequest request;
 
     public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
@@ -140,5 +148,30 @@ public class UserServiceImpl implements UserService {
     public void removeByUsername(String username) {
         UserEntity user = userRepository.findFirstByUsername(username).get();
         userRepository.delete(user);
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null && authentication.isAuthenticated();
+    }
+    @Override
+    public boolean isUserAuthorized(String requestURI) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails userDetails) {
+            // Check authorization based on the provided request URI
+            // Add your authorization logic here, e.g., check if the user has access to the requested URI
+            return userDetails.getAuthorities().stream()
+                    .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"))
+                    && checkRequestURI(requestURI);
+        }
+
+        return false;
+    }
+    private boolean checkRequestURI(String requestURI) {
+        // Implement your logic to check if the user is authorized for the given request URI
+        // For example, you can compare it with a list of authorized URIs or patterns
+        return true; // Placeholder logic, replace it with your own
     }
 }

@@ -60,6 +60,7 @@ public class AdminController {
         model.addAttribute("addedAdmin", true);
         return "users";
     }
+
     @PostMapping("/remove-user/{id}")
     public String removeUser(@PathVariable Long id){
         userService.remove(id);
@@ -70,5 +71,6 @@ public class AdminController {
         model.addAttribute("removedUser", true);
         return "users";
     }
+
 
 }

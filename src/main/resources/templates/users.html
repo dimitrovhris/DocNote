@@ -18,8 +18,8 @@
 <body>
 <main>
     <header th:replace="~{fragments/commons::header}"></header>
-    <h2 th:if="${addedAdmin}">Successfully added admin!</h2>
-    <h2 th:if="${removedUser}">Successfully removed user!</h2>
+    <h2 id="successfully-added-admin" th:if="${addedAdmin}">Successfully added admin!</h2>
+    <h2 id="successfully-removed-user" th:if="${removedUser}">Successfully removed user!</h2>
 
     <h2>Administrators</h2>
     <section>
