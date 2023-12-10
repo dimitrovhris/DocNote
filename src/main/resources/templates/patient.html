@@ -25,27 +25,10 @@
     </div>
 
     <div class="main-info">
-        <button th:text="'Show ' +${patientProfile.firstName} +'\'s full info.'" id="show-info">Show full info</button>
-<!--        <div id="inner-info">-->
-<!--                        <h1><i class="fa-solid fa-user"></i> Main info:</h1>-->
-<!--                        <h2 th:text="${patientProfile.firstName}"></h2>-->
-<!--                        <h2 th:text="${patientProfile.surname}"></h2>-->
-<!--                        <h2 th:text="${patientProfile.lastName}"></h2>-->
-<!--        </div>-->
-<!--        <div id="other-info">-->
-<!--            <h2 th:text="${patientProfile.birthday}"></h2>-->
-<!--            <h2 th:text="${patientProfile.egn}"></h2>-->
-<!--            <h2 th:text="${patientProfile.address}"></h2>-->
-<!--        </div>-->
-<!--        <div id="body-info">-->
-<!--            <h2 th:text="'Height: ' + ${patientProfile.height} + ' cm'"></h2>-->
-<!--            <h2 th:text="'Weight: ' + ${patientProfile.weight} + ' kg'"></h2>-->
-<!--        </div>-->
+        <button th:text="'Show ' +${patientProfile.firstName} +'\'s main info.'" id="show-info"></button>
     </div>
     <div class="important-info">
         <div class="appointments">
-            <button id="appointment-button">Show appointments</button>
-
             <h2><i class="fa-solid fa-stethoscope"></i> Appointments:</h2>
             <div id="appointment-div" th:each="appointment: ${patientProfile.appointments}" class="appointment">
                 <h3 th:text="'Date: ' + ${appointment.visitDate}"></h3>
@@ -55,7 +38,6 @@
             </div>
         </div>
         <div class="documents">
-            <button id="document-button">Show documents</button>
             <h2><i class="fa-solid fa-file-contract"></i> Sickness leave documents:</h2>
 
             <div id="document-div" th:each="document: ${patientProfile.sicknessLeaveDocuments}">
@@ -66,7 +48,6 @@
             </div>
         </div>
         <div class="tests-info">
-            <button id="test-button">Show tests</button>
             <h2><i class="fa-solid fa-vial-virus"></i> Ordered tests</h2>
             <div id="test-info-div" th:each="test: ${patientProfile.tests}">
                 <h3 th:text="'Type: ' + ${test.type}"></h3>

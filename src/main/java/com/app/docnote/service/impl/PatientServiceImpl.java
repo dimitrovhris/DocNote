@@ -34,4 +34,5 @@ public class PatientServiceImpl implements PatientService {
     public Patient findById(Long id) {
         return patientRepository.findById(id).get();
     }
+    
 }

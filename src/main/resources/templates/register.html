@@ -93,8 +93,8 @@
                            th:field="*{confirmPassword}" id="confirm-pass"
                            placeholder="Enter your password again">
                     <br>
-                    <small th:if="${!doctorService.confirmPassword(doctorRegisterDTO) || #fields.hasErrors('confirmPassword')}">Passwords
-                        does not match</small>
+                    <small th:if="${notConfirmedPassword}">Passwords
+                        do not match</small>
                 </div>
             </div>
             <button type="submit" id="register-button-form">Register</button>

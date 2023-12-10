@@ -26,6 +26,12 @@
                 <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Add patients and information about them</h6>
                 <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Issue sick leave documents</h6>
                 <h6 sec:authorize="isAuthenticated()"><i class="fa-solid fa-circle-check"></i> Order tests for your patients</h6>
+                <a   th:href="@{/home}" sec:authorize="hasRole('USER')">
+                    <h3 id="my-patients-button" class="nav-button">My patients</h3>
+                </a>
+                <a   th:href="@{/manage-website}" sec:authorize="hasRole('ADMIN')">
+                    <h3 id="manage-website-button" class="nav-button">Manage website</h3>
+                </a>
         </div>
         </div>
         <img id="main-img" th:src="@{/images/main.png}" alt="Doctor image">

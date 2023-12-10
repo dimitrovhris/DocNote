@@ -59,3 +59,10 @@ body{
 .main-info > h2{
     margin-bottom: 0;
 }
+#show-info{
+    padding: 10px 15px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    font-size: 15px;
+}

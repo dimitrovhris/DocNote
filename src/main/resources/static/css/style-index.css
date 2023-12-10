@@ -137,7 +137,7 @@ footer{
     
 }
 .description-image{
-    width: 20em;
+    width: 15em;
     margin-top: 40px;
     margin-left: 15%;
 }
@@ -185,6 +185,10 @@ ul{
 a{
     text-decoration: none;
 }
-
+#my-patients-button, #manage-website-button{
+    background-color: white;
+    border-radius: 15px;
+    text-align: center;
+}
 
 

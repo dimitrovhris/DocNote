@@ -30,7 +30,6 @@ public class UserController {
         if (!model.containsAttribute("doctorService")) {
             model.addAttribute("doctorService", userService);
         }
-
         return "register";
     }
 
@@ -39,7 +38,6 @@ public class UserController {
                            BindingResult bindingResult,
                            RedirectAttributes rAtt) {
         if (bindingResult.hasErrors()
-                || !userService.confirmPassword(userRegisterDTO)
                 || userService.containsUsername(userRegisterDTO)
                 || userService.containsEmail(userRegisterDTO)
                 || userService.containsEgn(userRegisterDTO)) {
@@ -47,8 +45,20 @@ public class UserController {
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorRegisterDTO", bindingResult);
             return "redirect:/user/register";
         }
+        if(!userService.confirmPassword(userRegisterDTO)){
+            rAtt.addFlashAttribute("doctorRegisterDTO", userRegisterDTO);
+            rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorRegisterDTO", bindingResult);
+            return "redirect:/user/register/passwords-do-not-match";
+        }
+        else{
         userService.register(userRegisterDTO);
         return "redirect:/user/login";
+        }
+    }
+    @GetMapping("/register/passwords-do-not-match")
+    public String notMatchPasswordsRegister(Model model){
+        model.addAttribute("notConfirmedPassword", true);
+        return "register";
     }
 
     @GetMapping("/login")
