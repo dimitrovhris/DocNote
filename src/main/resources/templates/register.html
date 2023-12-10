@@ -45,14 +45,14 @@
 
                 <div>
                     <label for="username">Username:</label>
-                    <input class="register-input" th:name="username" th:field="*{username}" type="text" id="username">
+                    <input class="register-input" th:name="username" th:field="*{username}" type="text" id="username" placeholder="Enter username">
                     <br>
                     <small th:if="${#fields.hasErrors('username') || doctorService.containsUsername(doctorRegisterDTO)}">Username
                         should be at least 5 symbols and unique</small>
                     <br>
-                    <label for="phone">Phone:</label>
+                    <label for="phone">ID:</label>
                     <input class="register-input" type="text" th:name="egn" th:field="*{egn}" id="phone"
-                           placeholder="Enter your phone number">
+                           placeholder="Enter your ID">
                     <br>
                     <small th:if="${#fields.hasErrors('egn') || doctorService.containsEgn(doctorRegisterDTO)}">Phone
                         should be

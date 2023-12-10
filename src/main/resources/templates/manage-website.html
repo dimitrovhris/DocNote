@@ -23,9 +23,11 @@
             <h6><i class="fa-solid fa-circle-check"></i> Approve doctor registrations</h6>
             <h6><i class="fa-solid fa-circle-check"></i> Add other admins</h6>
             <h6><i class="fa-solid fa-circle-check"></i> Remove doctors from the website</h6>
-            <a th:href="@{/manage-website/waiting-registrations}">Waiting registrations</a>
-            <a th:href="@{/manage-website/users}">See all doctors</a>
-            <a th:href="@{/manage-website/admins}">Administrators</a>
+            <div id="buttons">
+            <a class="manage-button" th:href="@{/manage-website/waiting-registrations}">Waiting registrations</a>
+            <a class="manage-button" th:href="@{/manage-website/users}">See all doctors</a>
+            <a class="manage-button" th:href="@{/manage-website/admins}">Administrators</a>
+            </div>
         </div>
 
         <div>

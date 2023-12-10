@@ -45,20 +45,9 @@ public class UserController {
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorRegisterDTO", bindingResult);
             return "redirect:/user/register";
         }
-        if(!userService.confirmPassword(userRegisterDTO)){
-            rAtt.addFlashAttribute("doctorRegisterDTO", userRegisterDTO);
-            rAtt.addFlashAttribute("org.springframework.validation.BindingResult.doctorRegisterDTO", bindingResult);
-            return "redirect:/user/register/passwords-do-not-match";
-        }
-        else{
         userService.register(userRegisterDTO);
         return "redirect:/user/login";
-        }
-    }
-    @GetMapping("/register/passwords-do-not-match")
-    public String notMatchPasswordsRegister(Model model){
-        model.addAttribute("notConfirmedPassword", true);
-        return "register";
+
     }
 
     @GetMapping("/login")

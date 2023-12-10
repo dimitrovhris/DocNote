@@ -58,3 +58,10 @@ form h1{
 #label-check, #checkbox{
     font-size: 20px;
 }
+#add-app-btn{
+    background-color: black;
+    margin: 1px auto 1px;
+    color: white;
+    padding: 10px 15px 10px;
+    border-radius: 15px;
+}

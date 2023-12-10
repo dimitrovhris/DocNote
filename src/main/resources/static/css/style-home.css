@@ -165,3 +165,17 @@ h5{
     font-size: 10px;
     padding: 10px 15px 10px;
 }
+.manage-button{
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    padding: 15px 10px 15px;
+    font-size: 15px;
+}
+#buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}

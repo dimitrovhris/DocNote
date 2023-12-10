@@ -80,7 +80,6 @@ header > i{
     font-size: 25px;
 }
 #headers-div > h1, h2{
-    margin-left: 30px;
     margin-right: 30px;
 }
 header > ul{
@@ -190,5 +189,3 @@ a{
     border-radius: 15px;
     text-align: center;
 }
-
-

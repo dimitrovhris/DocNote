@@ -28,6 +28,7 @@ public class PatientControllerTests {
     Long userId;
     @BeforeEach
     void setUp(){
+        testDataService.tearDownDB();
         testDataService.initUsers();
         userId = testDataService.getIdByUsername("goshoWrong");
     }

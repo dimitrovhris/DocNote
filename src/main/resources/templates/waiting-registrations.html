@@ -17,13 +17,13 @@
     <title>DocHero</title>
 </head>
 <body>
-    <header th:replace="~{fragments/commons::header}"></header>
-    <main>
+<header th:replace="~{fragments/commons::header}"></header>
+<main>
     <div id="approve-register-card" th:each="user: ${notApprovedUsers}">
         <div class="block-info">
             <i class="icon fa-solid fa-user-doctor"></i>
             <h3 th:text="${user.firstName}"></h3>
-            <h3  th:text="${user.lastName}"></h3>
+            <h3 th:text="${user.lastName}"></h3>
         </div>
         <div class="block-info">
             <h3><i class="icon fa-solid fa-id-card"></i>Id:</h3>
@@ -37,15 +37,17 @@
             <h3><i class="fa-solid fa-envelope"></i></h3>
             <h3 th:text="${user.email}"></h3>
         </div>
-        <form class="button-form" th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
-            <button type="submit" id="approve-button">Approve</button>
-        </form>
-        <form class="button-form" th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
-            <button type="submit" id="deny-button">Deny</button>
-        </form>
+        <div id="approve-buttons">
+            <form class="button-form" th:method="POST" th:action="@{/user/approve/{id}(id = ${user.id})}">
+                <button type="submit" id="approve-button">Approve</button>
+            </form>
+            <form class="button-form" th:method="POST" th:action="@{/user/deny/{id}(id = ${user.id})}">
+                <button type="submit" id="deny-button">Deny</button>
+            </form>
+        </div>
     </div>
-    </main>
-    <footer th:replace="~{fragments/commons::footer}"></footer>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
 
 
 </body>

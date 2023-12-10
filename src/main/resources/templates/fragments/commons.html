@@ -16,7 +16,9 @@
     </a>
 
 
-    <a></a>
+    <a  th:href="@{/manage-website}" sec:authorize="hasRole('ADMIN')">
+        <h3 class="nav-button">Manage website</h3>
+    </a>
 
     <nav id="site-navigation">
 

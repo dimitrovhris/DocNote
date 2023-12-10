@@ -21,7 +21,7 @@
     <h2 id="successfully-added-admin" th:if="${addedAdmin}">Successfully added admin!</h2>
     <h2 id="successfully-removed-user" th:if="${removedUser}">Successfully removed user!</h2>
 
-    <h2>Administrators</h2>
+    <h2>Doctors:</h2>
     <section>
 
         <div id="admin-card" th:each="doctor: ${notAdmins}">
@@ -38,7 +38,7 @@
 
                 <div class="inside-info" id="form">
                     <form th:method="POST" th:action="@{/manage-website/add-admin/{id}(id= ${doctor.id})}">
-                        <button id="enabled-button" type="submit">Add as
+                        <button id="add-as-admin-button" type="submit">Add as
                             admin
                         </button>
                     </form>

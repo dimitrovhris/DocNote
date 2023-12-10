@@ -6,3 +6,19 @@ main{
     font-family: 'Ubuntu', sans-serif;
 
 }
+#document-form{
+    display: grid;
+    text-align: center;
+}
+.input-d{
+    width: 150px;
+    height: 25px;
+    border-radius: 15px;
+    margin: 1px auto 1px;
+}
+#add-button{
+    background-color: black;
+    color: white;
+    padding: 0 15px 10px;
+    border-radius: 15px;
+}

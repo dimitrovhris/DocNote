@@ -3,6 +3,9 @@ package com.app.docnote.util;
 
 import com.app.docnote.model.DTO.PatientAddDTO;
 import com.app.docnote.model.DTO.UserRegisterDTO;
+import com.app.docnote.model.entity.UserEntity;
+import com.app.docnote.model.entity.UserRole;
+import com.app.docnote.model.enums.UserRoleEnum;
 import com.app.docnote.repository.*;
 import com.app.docnote.service.PatientService;
 import com.app.docnote.service.UserService;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 @Component
 public class TestDataService {
@@ -29,6 +33,15 @@ public class TestDataService {
         this.appointmentRepository = appointmentRepository;
         this.sicknessLeaveDocumentRepository = sicknessLeaveDocumentRepository;
         this.testRepository = testRepository;
+    }
+    public void initAdmins(){
+        long conditions = userRepository.count();
+        if(conditions == 0){
+            UserEntity admin = new UserEntity("Admin", "Adminov", "Adminov", "admin", "0000000000", "admin@admin.bg", "Bulgaria, Sofia", "$2a$10$tLvO0mvPt1tTJ5kGLKp90OTEWfCG1CR.HnSbNec6txQx5/VmMg9Ii", true, new ArrayList<>(), new ArrayList<>());
+            admin.getRoles().add(new UserRole(UserRoleEnum.ADMIN));
+            admin.getRoles().add(new UserRole(UserRoleEnum.USER));
+            userRepository.save(admin);
+        }
     }
     public void initUsers(){
         userService.register(createUserRegisterDTO());

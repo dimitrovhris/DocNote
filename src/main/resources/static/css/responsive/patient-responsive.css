@@ -1,0 +1,19 @@
+@media(max-width: 1075px){
+    .important-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+}
+@media (max-width: 750px) {
+    .important-info{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width: 840px){
+    .main-info{
+        display: grid;
+    }
+}

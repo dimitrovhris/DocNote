@@ -35,6 +35,7 @@ public class UserControllerTests {
 
     @BeforeEach
     void setUp(){
+        testDataService.tearDownDB();
         testDataService.initUsers();
     }
     @AfterEach

@@ -8,3 +8,7 @@ main{
     text-align: center;
     padding: 0;
 }
+#approve-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

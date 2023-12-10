@@ -1,11 +1,10 @@
 package com.app.docnote.web;
 
-import com.app.docnote.model.entity.UserEntity;
-import com.app.docnote.model.entity.UserRole;
-import com.app.docnote.model.enums.UserRoleEnum;
-import com.app.docnote.repository.UserRepository;
 import com.app.docnote.util.TestDataService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +27,8 @@ public class AdminControllerTests {
     Long userId;
     @BeforeEach
     void setUp(){
+        testDataService.tearDownDB();
+        testDataService.initAdmins();
         testDataService.initUsers();
         userId = testDataService.getIdByUsername("goshoWrong");
     }
